@@ -1,0 +1,260 @@
+
+.content-imgs-rotate {
+    padding: 4%;
+    height: 350px;
+}
+
+.content-imgs-rotate img {
+    height: 100%;
+    width: 100%;
+}
+
+.row {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#logo-nav {
+    width: 42px;
+    height: 42px;
+    align-self: auto;
+}
+
+/*CSS Para la barrita de Login*/
+
+#login-dp {
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, .8);
+}
+
+#login-dp .help-block {
+    font-size: 12px
+}
+
+#login-dp .bottom {
+    background-color: rgba(255, 255, 255, .8);
+    border-top: 1px solid #ddd;
+    clear: both;
+    padding: 14px;
+}
+
+#login-dp .social-buttons {
+    margin: 12px 0
+}
+
+#login-dp .social-buttons a {
+    width: 49%;
+}
+
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+
+.btn-fb {
+    color: #fff;
+    background-color: #3b5998;
+}
+
+.btn-fb:hover {
+    color: #fff;
+    background-color: #496ebc
+}
+
+.btn-tw {
+    color: #fff;
+    background-color: #55acee;
+}
+
+.btn-tw:hover {
+    color: #fff;
+    background-color: #59b5fa;
+}
+
+@media(max-width:768px) {
+    #login-dp {
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom {
+        background-color: inherit;
+        border-top: 0 none;
+    }
+}
+
+/*Fin css de loggin*/
+
+/* CSS Catalogo */
+
+.content-catalogo aside {
+    width: 350px;
+    height: 500px;
+}
+
+.img-colegio {
+    height: 150px;
+    width: 100%;
+}
+
+.modal-header {
+    padding: 0.4rem 25px;
+}
+
+.modal-dialog {
+    max-width: 80%;
+}
+
+.modal .row {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.aside-carro{
+	display: none;
+	width: 40%;
+	position: absolute;
+	top: 10%;
+	right: 0%;
+}
+
+@media (max-width: 768px) {
+    .content-catalogo aside {
+        float: none !important;
+        height: initial;
+        width: 100%;
+        margin-top: 10px;
+	}
+}
+
+/* Fin CSS Catalogo */
+
+/* CSS Footer */
+
+.root-footer {
+    background-color: beige;
+}
+
+.root-footer .row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+/* Fin CSS Footer*/
+/* CSS sidebar*/
+body {
+  overflow-x: hidden;
+}
+
+#wrapper {
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+  padding-left: 500px;
+}
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  left: 500px;
+  width: 0;
+  height: 100%;
+  margin-left: -500px;
+  overflow-y: auto;
+  background: #000;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  opacity: 0.8;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 500px;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  position: absolute;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -500px;
+}
+
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 500px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #fff;
+}
+
+.sidebar-nav li {
+  text-indent: 20px;
+  line-height: 40px;
+}
+
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  color: #999999;
+}
+
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+.sidebar-nav>.sidebar-brand {
+  height: 65px;
+  font-size: 18px;
+  line-height: 60px;
+}
+
+.sidebar-nav>.sidebar-brand a {
+  color: #999999;
+}
+
+.sidebar-nav>.sidebar-brand a:hover {
+  color: #fff;
+  background: none;
+}
+
+@media(min-width:768px) {
+  #wrapper {
+    padding-left: 0;
+  }
+  #wrapper.toggled {
+    padding-left: 500px;
+  }
+  #sidebar-wrapper {
+    width: 0;
+  }
+  #wrapper.toggled #sidebar-wrapper {
+    width: 500px;
+  }
+  #page-content-wrapper {
+    position: relative;
+  }
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+  }
+}

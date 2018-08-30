@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <a href="index.html" class="navbar-brand">
+        <img src="img/logo.png" id="logo-nav"> <p class="label-title">MDV Express</p>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav navbar-nav">
+            <li class="nav-item dropdown">
+                <a href="#" class="dropdown-toggle nav-link" id="navDropMenu" data-toggle="dropdown">
+                    Colegios
+                    <span class="caret"></span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navDropMenu">
+                    <a class="dropdown-item" href="/catalogo">Colegio 1</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Colegio 2</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Colegio 3</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Empresas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Ubicación</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contacto</a>
+            </li>
+        </ul>
+        <form class="frm-buscar form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="¿Que desea buscar?" aria-label="Search">
+            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+        </form>
+    </div>
+    <!-- Ocultar esta parte del nav cuando esté versión móvil -->
+    <span class="navbar-text">
+        ¿Estas registrado?
+    </span>
+    <li class="nav-link dropdown" id="loginBtn">
+        <a href="#" class="btn btn-outline-dark" data-toggle="dropdown">Ingresar</a>
+        <ul id="login-dp" class="dropdown-menu">
+            <li>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form class="form" role="form" accept-charset="UTF-8" id="login-nav">
+                            <div class="form-group">
+                                <label class="sr-only" for="usr01">Usuario</label>
+                                <input type="text" class="form-control" id="usr01" placeholder="Usuario" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="pswd01">Password</label>
+                                <input type="password" class="form-control" id="pswd01" placeholder="Contraseña" required>
+                                <div class="help-block text-right">
+                                    <a href="">¿Olvido su contraseña?</a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="bottom text-center">
+                        ¿Eres nuevo?
+                        <a href="#">
+                            <b>Registrate</b>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </li>
+    <button class="btn btn-outline-secondary navbar-right" href="#menu-toggle" id="menu-toggle">
+        <span class="fas fa-cart-plus"></span>
+
+    </button>
+    <div class="col-md-1 "></div>
+
+</nav>
