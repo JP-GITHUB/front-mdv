@@ -27,7 +27,7 @@ $(document).ready(() => {
 
 
     var objPage = {
-        apiUrl: 'http://localhost:3001',
+        apiUrl: 'https://api-mdv.herokuapp.com',
 
         myMethod: function () {
             console.log(myFeature.myProperty);
