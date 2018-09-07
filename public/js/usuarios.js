@@ -105,7 +105,7 @@ function LoadModal(id, nombre, apellido, rut, mail, telefono, password, estado){
                 '</form>'+
             '</div>'+
             '<div class="modal-footer">'+
-                '<button type="button" class="btn btn-primary" onclick=UpdateUser('+id+')>Save changes</button>'+
+                '<button type="button" class="btn btn-primary" onclick=UpdateUser('+id+') data-toggle="modal" data-target="#edit_modal">Save changes</button>'+
                 '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>'+
             '</div>'+
         '</div>'+
@@ -136,10 +136,10 @@ function UpdateUser(id){
         dataType: "json",
         url:"http://localhost:3001/usuarios",
         success: function(){
-
+            
         },
         error: function (err) {
-
+            
         }
     });
 }
@@ -186,11 +186,28 @@ function LoadDelete(id){
                 '<h4>¿Esta seguro que desea eliminar el registro?</h4>'+
             '</div>'+
             '<div class="modal-footer">'+
-                '<button type="button" class="btn btn-danger" onclick=Delete('+id+')>Eliminar</button>'+
+                '<button type="button" class="btn btn-danger" onclick=Delete('+id+') data-toggle="modal" data-target="#delete_modal">Eliminar</button>'+
                 '<button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>'+
             '</div>'+
         '</div>'+
     '</div>'
     
     $("#delete_modal").append(content);
+};
+
+function Delete(id){
+    $.ajax({
+        method:"DELETE",
+        data:{
+            id: id
+        },
+        dataType: "json",
+        url:"http://localhost:3001/usuarios",
+        success: function(){
+            
+        },
+        error: function (err) {
+            
+        }
+    });
 };
