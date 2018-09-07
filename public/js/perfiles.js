@@ -1,9 +1,33 @@
 $(document).ready(() => {
+
+    $("#btn_save").click(function () {
+        objPerfiles.editPerfil();
+    });
+
     var objPerfiles = {
         apiUrl: 'http://localhost:3001',
 
         editPerfil: function () {
+            let id = $("#hidd_id").val();
+            let nombre = $("#txt_nombre").val();
+            let estado = $("#cbx_estado").val();
 
+            $.ajax({
+                url: this.apiUrl + "/perfiles",
+                method: 'PUT',
+                dataType: 'json',
+                data: {
+                    id: id,
+                    nombre: nombre,
+                    estado: estado
+                },
+                success: function (data) {
+
+                },
+                error: function (err) {
+
+                }
+            })
         },
 
         init_datatables: function () {
@@ -20,13 +44,13 @@ $(document).ready(() => {
                             var linkEdit = '<a class="table-edit btn-edit" data-id="' + row.id + '" data-toggle="modal" data-target="#edit_modal">Editar</a>';
                             linkEdit = linkEdit.replace("-1", row.ID);
 
-                            var linkDetails = '<a class="btn-details" data-id="' + row.id + '">Detalle</a>';
-                            linkDetails = linkDetails.replace("-1", row.ID);
+                            //var linkDetails = '<a class="btn-details" data-id="' + row.id + '">Detalle</a>';
+                            //linkDetails = linkDetails.replace("-1", row.ID);
 
                             var linkDelete = '<a class="table-delete btn-delete" data-id="' + row.id + '">Eliminar</a>';
                             linkDelete = linkDelete.replace("-1", row.ID);
 
-                            return linkDetails + " | " + linkEdit + " | " + linkDelete;
+                            return /*linkDetails + " | " + */ linkEdit + " | " + linkDelete;
                         }
                     }
                 ],
@@ -34,6 +58,7 @@ $(document).ready(() => {
 
             $('#table_perfiles tbody').on('click', 'tr', function () {
                 let data = table.row(this).data();
+                $("#hidd_id").val(data.id);
                 $("#txt_nombre").val(data.nombre);
                 $("#cbx_estado").val((data.estado) ? 1 : 2);
             });
