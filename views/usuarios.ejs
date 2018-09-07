@@ -1,0 +1,42 @@
+<%- include('fragments/header') %>
+
+    <div id="wrapper">
+        <div id="page-content-wrapper">
+            <header>
+                <%- include('fragments/empty_navbar') %>
+            </header>
+
+            <div>
+                <div class="container-fluid ">
+                    <div class="row ">
+                        <div class="col-md-12 content_table_perfiles">
+                            <table id="table_perfiles" class="table_perfiles display" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>NOMBRE</th>
+                                        <th>APELLIDO</th>
+                                        <th>RUT</th>
+                                        <th>MAIL</th>
+                                        <th>TELEFONO</th>
+                                        <th>PASSWORD</th>
+                                        <th>ESTADO</th>
+                                        <th>MAIL</th>
+                                        <th>FECHA_CREACIÓN</th>
+                                        <th>FECHA_MODIFICACIÓN</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <%- include('fragments/footer_part') %>
+            </div>
+        </div>
+    </div>
+
+    <%- include('fragments/footer') %>
+        <script src="js/auth.js"></script>
+        <script src="js/usuarios.js"></script>
