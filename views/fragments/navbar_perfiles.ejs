@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+
+    <a href="index.html" class="navbar-brand text-center">
+        <img src="img/logo.png" id="logo-nav"> <p class="label-title">MDV Express</p>
+    </a>
+
+    <div>
+        <span id="span_uareregistered" class="navbar-text">
+            ¿Estas registrado?
+        </span>
+        <div id="dropdown_session" class="dropdown_session dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                User
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div id="session_dynamic_option"></div>
+                <a id="btn_close_session" class="dropdown-item" href="#">Cerrar sesión</a>
+            </div>
+        </div>
+        <li class="nav-link dropdown" id="loginBtn">
+            <a href="#" class="btn btn-outline-dark" data-toggle="dropdown">Ingresar</a>
+            <ul id="login-dp" class="dropdown-menu">
+                <li>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="form" role="form" accept-charset="UTF-8" id="login-nav">
+                                <div class="form-group">
+                                    <label class="sr-only" for="lbl_email">Email</label>
+                                    <input type="text" class="form-control" id="txt_email" placeholder="Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="lbl_pswd">Password</label>
+                                    <input type="password" class="form-control" id="txt_pswd" placeholder="Contraseña" required>
+                                    <div class="help-block text-right">
+                                        <a href="">¿Olvido su contraseña?</a>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" id="btn_login" class="btn btn-primary btn-block">Ingresar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="bottom text-center">
+                            ¿Eres nuevo?
+                            <a href="#">
+                                <b>Registrate</b>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </div>
+</nav>
