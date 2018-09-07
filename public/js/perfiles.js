@@ -17,7 +17,7 @@ $(document).ready(() => {
                     { "data": "updated_at" },
                     {
                         mRender: function (data, type, row) {
-                            var linkEdit = '<a class="table-edit btn-edit" data-id="' + row.id + '" data-toggle="modal" data-target="#edit_modal">Editar</a>';
+                            var linkEdit = '<a class="table-edit btn-edit" href="#" data-id="' + row.id + '" data-toggle="modal" data-target="#edit_modal">Editar</a>';
                             linkEdit = linkEdit.replace("-1", row.ID);
 
                             var linkDetails = '<a class="btn-details" data-id="' + row.id + '">Detalle</a>';
