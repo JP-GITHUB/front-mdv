@@ -263,3 +263,7 @@ body {
 .dropdown_session, #span_uareregistered, #loginBtn {
     display: none;
 }
+
+.content_table_perfiles{
+    height: 450px;
+}

@@ -13,19 +13,11 @@ var objAuth = {
                 if (obj.status) {
                     localStorage.setItem("currentUser", JSON.stringify({
                         email: email,
-                        token: obj.token
+                        token: obj.token,
+                        user_data: obj.user_data
                     }));
 
-                    if (obj.user_data.PERFIL.nombre === 'ADMIN') {
-                        $("#session_dynamic_option").append(
-                            `<a class="dropdown-item" href="/usuarios">Administrar Usuario</a>
-                             <a class="dropdown-item" href="/perfiles">Administrar Perfiles</a>`
-                        );
-                    }
-
-                    $("#dropdown_session #dropdownMenuButton").html(email);
-                    $("#span_uareregistered, #loginBtn").css("display", "none");
-                    $(".dropdown_session").css("display", "block");
+                    objAuth.statusSession();
                 } else {
                     $.alert({
                         title: 'Error!',
@@ -54,6 +46,13 @@ var objAuth = {
     statusSession() {
         let currentUser = JSON.parse(localStorage.getItem("currentUser"));
         if (currentUser) {
+            if (currentUser.user_data.PERFIL.nombre === 'ADMIN') {
+                $("#session_dynamic_option").append(
+                    `<a class="dropdown-item" href="/usuarios">Administrar Usuario</a>
+                     <a class="dropdown-item" href="/perfiles">Administrar Perfiles</a>`
+                );
+            }
+
             $(".dropdown_session").css("display", "block");
             $("#dropdown_session #dropdownMenuButton").html(currentUser.email);
             $("#span_uareregistered, #loginBtn").css("display", "none");
