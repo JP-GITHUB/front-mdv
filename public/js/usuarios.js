@@ -18,7 +18,6 @@ $(document).ready(() => {
                     },
                     {
                         mRender: function (data, type, row) {
-                            console.log(row);
                             var linkEdit = '<button type="button" class="btn btn-success"'+
                             'onclick="LoadModal('+row.id+',\''+ row.nombre+'\',\''+row.apellido+'\',\''+row.rut+'\',\''+row.mail+'\'' +
                             ',\''+row.telefono+'\',\''+row.password+'\',\''+row.estado+'\')"'+
@@ -116,26 +115,33 @@ function LoadModal(id, nombre, apellido, rut, mail, telefono, password, estado){
 };
 
 function UpdateUser(id){
-
-
     let nombre = $("#txt_nombre").val();
     let apellido = $("#txt_apellido").val();
-    console.log(nombre, apellido, id);
+    let rut = $("#txt_rut").val();
+    let mail = $("#txt_mail").val();
+    let telefono = $("#txt_telefono").val();
+    let password = $("#txt_password").val();
 
-    /*
     $.ajax({
-        type:"POST",
+        method:"PUT",
         data:{
             id: id,
-            nombre: nombre
+            nombre: nombre,
+            apellido: apellido,
+            rut: rut,
+            mail: mail,
+            telefono: telefono,
+            password: password
         },
         dataType: "json",
-        url:"http://localhost:3001/usuariosUpdate",
+        url:"http://localhost:3001/usuarios",
+        success: function(){
 
+        },
+        error: function (err) {
 
-
+        }
     });
-    */
 }
 
 function FormatoFecha(fecha) {   
