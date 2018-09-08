@@ -16,10 +16,12 @@ $(document).ready(function() {
                     rptpassword: $('#Pwdrpt').val(),
                 },
                 success: function(data) {
+                    console.log("Guarde");
                     console.log(data)
                 },
                 error: function(err) {
-
+                    console.log("Error");
+                    console.log(err)
                 }
             })
         })

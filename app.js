@@ -23,13 +23,10 @@ app.use('/perfiles', function(req, res) {
 app.use('/register', function(req, res) {
     res.render('registro');
 });
-<<<<<<< HEAD
-=======
 
 app.use('/forgot_password', function(req, res) {
     res.render('forgot_password');
 });
->>>>>>> 20c0a5d2d6fb91912cdcb781a224e36b3f04930e
 
 app.use('/usuarios', function(req, res) {
     res.render('usuarios');
