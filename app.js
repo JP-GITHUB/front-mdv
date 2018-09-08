@@ -27,13 +27,10 @@ app.use('/register', function(req, res) {
 app.use('/forgot_password', function(req, res) {
     res.render('forgot_password');
 });
-<<<<<<< HEAD
-=======
 
 app.use('/change_password', function(req, res) {
     res.render('change_password');
 });
->>>>>>> aa452adb7c33e16673383b1a333ca4e8af9594cb
 
 app.use('/usuarios', function(req, res) {
     res.render('usuarios');
