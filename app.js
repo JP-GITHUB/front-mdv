@@ -24,6 +24,10 @@ app.use('/register', function(req, res) {
     res.render('registro');
 });
 
+app.use('/forgot_password', function(req, res) {
+    res.render('forgot_password');
+});
+
 app.use('/usuarios', function(req, res){
     res.render('usuarios');
 });

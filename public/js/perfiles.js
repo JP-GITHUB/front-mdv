@@ -18,6 +18,9 @@ $(document).ready(() => {
                 url: this.apiUrl + "/perfiles",
                 method: 'PUT',
                 dataType: 'json',
+                headers: {
+                    authorization: this.storage_data.token
+                },
                 data: {
                     id: id,
                     nombre: nombre,

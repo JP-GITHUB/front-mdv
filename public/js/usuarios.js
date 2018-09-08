@@ -9,6 +9,9 @@ $(document).ready(() => {
             $.ajax({
                 type:"GET",
                 url:"http://localhost:3001/perfiles",
+                headers: {
+                    authorization: this.storage_data.token
+                },
                 dataType:"json",
                 success(data){
                     let perfiles = data.data;
