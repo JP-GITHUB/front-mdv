@@ -172,7 +172,10 @@ function LoadModal(id, nombre, apellido, rut, mail, telefono, password, estado, 
 
 function UpdateUser(){
     let table_instance = $('#table_perfiles').DataTable();
+<<<<<<< HEAD
+=======
     
+>>>>>>> cf25a4800fbf647c6e9b5926c8b64459dc0d5f2b
     let id = $("#id_hdn").val();
     let nombre = $("#txt_nombre").val();
     let apellido = $("#txt_apellido").val();
