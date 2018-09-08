@@ -279,11 +279,10 @@ body {
 
 #registration-form {
     max-width: 800px;
-    margin: 120px auto;
+    margin: 20px auto;
 }
 
 #registration-form .frm {
-    width: 50%;
     min-width: 250px;
     padding: 0 35px;
     background-size: 100% 100%;
