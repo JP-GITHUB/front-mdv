@@ -8,7 +8,7 @@ $(document).ready(() => {
            
             $.ajax({
                 type:"GET",
-                url:"http://localhost:3001/perfiles",
+                url:"https://api-mdv.herokuapp.com/perfiles",
                 headers: {
                     authorization: this.storage_data.token
                 },
@@ -25,7 +25,7 @@ $(document).ready(() => {
 
             let table = $('#table_perfiles').DataTable({
                 "ajax": {
-                    url: 'http://localhost:3001/usuarios',
+                    url: 'https://api-mdv.herokuapp.com/usuarios',
                     headers: {
                         authorization: this.storage_data.token
                     } 
@@ -80,7 +80,7 @@ $(document).ready(() => {
         getPerfil(){
             $.ajax({
                 type:"GET",
-                url:"http://localhost:3001/perfiles",
+                url:"https://api-mdv.herokuapp.com/perfiles",
                 dataType:"json",
                 success(data){
                     let perfiles = data.data;
@@ -195,7 +195,7 @@ function UpdateUser(){
             perfil: perfil
         },
         dataType: "json",
-        url: "http://localhost:3001/usuarios",
+        url: "https://api-mdv.herokuapp.com/usuarios",
         success: function () {
             table_instance.ajax.reload();
         },
@@ -265,7 +265,7 @@ function Delete(id) {
             id: id
         },
         dataType: "json",
-        url: "http://localhost:3001/usuarios",
+        url: "https://api-mdv.herokuapp.com/usuarios",
         success: function () {
             table_instance.ajax.reload();
         },
