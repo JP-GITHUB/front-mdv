@@ -28,6 +28,10 @@ app.use('/forgot_password', function(req, res) {
     res.render('forgot_password');
 });
 
+app.use('/change_password', function(req, res) {
+    res.render('change_password');
+});
+
 app.use('/usuarios', function(req, res){
     res.render('usuarios');
 });
