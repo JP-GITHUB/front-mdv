@@ -121,6 +121,7 @@ $(document).ready(() => {
                         }
                     }
                 ],
+                "responsive": true
             });
 
             $('#table_perfiles tbody').on('click', 'tr', function () {
