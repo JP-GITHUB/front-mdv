@@ -1,7 +1,24 @@
+var perfilContent = '';
+
 $(document).ready(() => {
-    var objPerfiles = {
+    var objUsuarios = {
         apiUrl: 'http://localhost:3001',
         init_datatables: function () {
+           
+            $.ajax({
+                type:"GET",
+                url:"http://localhost:3001/perfiles",
+                dataType:"json",
+                success(data){
+                    let perfiles = data.data;
+                    for (item in perfiles){
+                        perfilContent += '<option value="'+perfiles[item].id+'">'+perfiles[item].nombre+'</option>';                    
+                    };
+                    $("#cbx_perfiles").html(perfilContent);
+                },
+                error(err){}
+            });
+
             let table = $('#table_perfiles').DataTable({
                 "ajax": 'http://localhost:3001/usuarios',
                 "columns": [
@@ -20,7 +37,7 @@ $(document).ready(() => {
                         mRender: function (data, type, row) {
                             var linkEdit = '<button type="button" class="btn btn-success"'+
                             'onclick="LoadModal('+row.id+',\''+ row.nombre+'\',\''+row.apellido+'\',\''+row.rut+'\',\''+row.mail+'\'' +
-                            ',\''+row.telefono+'\',\''+row.password+'\',\''+row.estado+'\')"'+
+                            ',\''+row.telefono+'\',\''+row.password+'\',\''+row.estado+'\',\''+row.perfil_id+'\')"'+
                             'data-toggle="modal" data-target="#edit_modal">' +
                             '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Editar</button>';
                             linkEdit = linkEdit.replace("-1", row.ID);
@@ -51,23 +68,42 @@ $(document).ready(() => {
             } );
         },
 
+        getPerfil(){
+            $.ajax({
+                type:"GET",
+                url:"http://localhost:3001/perfiles",
+                dataType:"json",
+                success(data){
+                    let perfiles = data.data;
+                    var perfilContent= '<option value="0">Seleccione perfil</option>';
+                    for (item in perfiles){
+                        perfilContent += '<option value="'+item.id+'">'+item.nombre+'</option>';                    
+                    };
+                },
+                error(err){}
+            });
+        },
+
         init: function (settings) {
             if (!objAuth.checkSession()) {
                 window.location.href = "/";
             }
 
-            objPerfiles.init_datatables();
+            objUsuarios.init_datatables();            
+            
         },
     };
 
-    objPerfiles.init();
+    objUsuarios.init();
 
 });
 
-function LoadModal(id, nombre, apellido, rut, mail, telefono, password, estado){
-    var modal_ini = '<div id="edit_modal" class="modal" tabindex="-1" role="dialog">';
+function LoadModal(id, nombre, apellido, rut, mail, telefono, password, estado, perfil_id){
+    var modal_ini = '<div id="edit_modal" class="modal" tabindex="-1" role="dialog">'+
+                    '<select name="cbx_perfiles" id="cbx_perfiles" class="form-control">'+
+                    '</select>';
     $("#edit_modal").html(modal_ini);
-    var content = ''+
+    var content = '<input type="hidden" id ="id_hdn" value="'+id+'"/>'+
     '<div class="modal-dialog" role="document">'+
         '<div class="modal-content">'+
             '<div class="modal-header">'+
@@ -102,25 +138,38 @@ function LoadModal(id, nombre, apellido, rut, mail, telefono, password, estado){
                         '<label for="Contraseña">Contraseña</label>'+
                         '<input type="text" class="form-control" id="txt_contraseña" value="'+password+'">'+
                     '</div>'+
+                    '<div class="form-group">'+
+                        '<select name="cbx_perfiles" id="cbx_perfiles" class="form-control">'+
+                            perfilContent+
+                        '</select>'+
+                    '</div>'+
                 '</form>'+
             '</div>'+
             '<div class="modal-footer">'+
-                '<button type="button" class="btn btn-primary" onclick=UpdateUser('+id+') data-toggle="modal" data-target="#edit_modal">Save changes</button>'+
+                '<button type="button" id="btn_save" class="btn btn-primary" data-toggle="modal" data-target="#edit_modal">Save changes</button>'+
                 '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>'+
             '</div>'+
         '</div>'+
     '</div>'
     
-    $("#edit_modal").append(content);
+    $("#edit_modal").html(content);
+    $("#cbx_perfiles").val(perfil_id);
+
+    $("#btn_save").on("click", function(e) {
+        e.preventDefault();
+        UpdateUser();
+    })
 };
 
-function UpdateUser(id){
+function UpdateUser(){
+    let id = $("#id_hdn").val();
     let nombre = $("#txt_nombre").val();
     let apellido = $("#txt_apellido").val();
     let rut = $("#txt_rut").val();
     let mail = $("#txt_mail").val();
     let telefono = $("#txt_telefono").val();
-    let password = $("#txt_password").val();
+    let password = $("#txt_contraseña").val();
+    let perfil = $("#cbx_perfiles").val();
 
     $.ajax({
         method:"PUT",
@@ -131,7 +180,8 @@ function UpdateUser(id){
             rut: rut,
             mail: mail,
             telefono: telefono,
-            password: password
+            password: password,
+            perfil: perfil
         },
         dataType: "json",
         url:"http://localhost:3001/usuarios",
