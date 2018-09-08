@@ -1,9 +1,15 @@
 $(document).ready(() => {
-    var objPerfiles = {
+    var objUsuario = {
         apiUrl: 'http://localhost:3001',
+        storage_data: null,
         init_datatables: function () {
             let table = $('#table_perfiles').DataTable({
-                "ajax": 'http://localhost:3001/usuarios',
+                "ajax": {
+                    url: 'http://localhost:3001/usuarios',
+                    headers: {
+                        authorization: this.storage_data.token
+                    } 
+                },
                 "columns": [
                     { "data": "id" },
                     { "data": "nombre" },
@@ -56,15 +62,17 @@ $(document).ready(() => {
                 window.location.href = "/";
             }
 
-            objPerfiles.init_datatables();
+            this.storage_data = JSON.parse(localStorage.getItem("currentUser"));            
+            objUsuario.init_datatables();
         },
     };
 
-    objPerfiles.init();
+    objUsuario.init();
 
 });
 
 function LoadModal(id, nombre, apellido, rut, mail, telefono, password, estado) {
+    console.log(objUsuario.stora)
     var modal_ini = '<div id="edit_modal" class="modal" tabindex="-1" role="dialog">';
     $("#edit_modal").html(modal_ini);
     var content = '' +
