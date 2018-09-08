@@ -115,12 +115,14 @@ function LoadModal(id, nombre, apellido, rut, mail, telefono, password, estado){
 };
 
 function UpdateUser(id){
+    let table_instance = $('#table_perfiles').DataTable();
+    
     let nombre = $("#txt_nombre").val();
     let apellido = $("#txt_apellido").val();
     let rut = $("#txt_rut").val();
     let mail = $("#txt_mail").val();
     let telefono = $("#txt_telefono").val();
-    let password = $("#txt_password").val();
+    let password = $("#txt_contraseña").val();
 
     $.ajax({
         method:"PUT",
@@ -136,7 +138,7 @@ function UpdateUser(id){
         dataType: "json",
         url:"http://localhost:3001/usuarios",
         success: function(){
-            
+            table_instance.ajax.reload();
         },
         error: function (err) {
             
