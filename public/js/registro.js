@@ -84,7 +84,7 @@ $(document).ready(function () {
         }
 
         $.ajax({
-            url: 'http://localhost:3001/usuarios/register',
+            url: 'https://api-mdv.herokuapp.com/usuarios/register',
             method: 'POST',
             dataType: 'json',
             data: {

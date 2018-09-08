@@ -13,7 +13,7 @@ $(document).ready(() => {
     });
 
     var objPerfiles = {
-        apiUrl: 'http://localhost:3001',
+        apiUrl: 'https://api-mdv.herokuapp.com',
         storage_data: null,
         editPerfil: function () {
             let table_instance = $('#table_perfiles').DataTable();
@@ -85,7 +85,7 @@ $(document).ready(() => {
         init_datatables: function () {
             let table = $('#table_perfiles').DataTable({
                 "ajax": {
-                    url: 'http://localhost:3001/perfiles',
+                    url: 'https://api-mdv.herokuapp.com/perfiles',
                     headers: {
                         authorization: this.storage_data.token
                     }
