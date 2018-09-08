@@ -22,6 +22,7 @@ app.use('/perfiles', function(req, res) {
 
 app.use('/register', function(req, res) {
     res.render('registro');
+});
 
 app.use('/usuarios', function(req, res){
     res.render('usuarios');
