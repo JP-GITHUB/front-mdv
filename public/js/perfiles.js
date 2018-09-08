@@ -8,6 +8,8 @@ $(document).ready(() => {
         apiUrl: 'http://localhost:3001',
         storage_data: null,
         editPerfil: function () {
+            let table_instance = $('#table_perfiles').DataTable();
+
             let id = $("#hidd_id").val();
             let nombre = $("#txt_nombre").val();
             let estado = $("#cbx_estado").val();
@@ -22,7 +24,7 @@ $(document).ready(() => {
                     estado: estado
                 },
                 success: function (data) {
-
+                    table_instance.ajax.reload();
                 },
                 error: function (err) {
 
