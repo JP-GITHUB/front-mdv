@@ -10,7 +10,7 @@ $(document).ready(() => {
 
     var objPerfiles = {
         apiUrl: 'http://localhost:3001',
-
+        storage_data: null,
         editPerfil: function () {
             let table_instance = $('#table_perfiles').DataTable();
             let id = $("#hidd_id").val();
@@ -57,7 +57,12 @@ $(document).ready(() => {
 
         init_datatables: function () {
             let table = $('#table_perfiles').DataTable({
-                "ajax": 'http://localhost:3001/perfiles',
+                "ajax": {
+                    url: 'http://localhost:3001/perfiles',
+                    headers: {
+                        authorization: this.storage_data.token
+                    }
+                },
                 dom: 'l<"toolbar">frtip',
                 initComplete: function(){
                     $("div.toolbar").html('<a>&nbsp;&nbsp;</a><button type="button" class="btn btn-success" data-toggle="modal" data-target="#new_modal">Agregar perfil nuevo</button>');           
@@ -98,6 +103,7 @@ $(document).ready(() => {
                 window.location.href = "/";
             }
 
+            this.storage_data = JSON.parse(localStorage.getItem("currentUser")); 
             objPerfiles.init_datatables();
         },
     };

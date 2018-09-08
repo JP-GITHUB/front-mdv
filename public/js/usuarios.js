@@ -1,8 +1,9 @@
 var perfilContent = '';
 
 $(document).ready(() => {
-    var objUsuarios = {
+    var objUsuario = {
         apiUrl: 'http://localhost:3001',
+        storage_data: null,
         init_datatables: function () {
            
             $.ajax({
@@ -20,7 +21,12 @@ $(document).ready(() => {
             });
 
             let table = $('#table_perfiles').DataTable({
-                "ajax": 'http://localhost:3001/usuarios',
+                "ajax": {
+                    url: 'http://localhost:3001/usuarios',
+                    headers: {
+                        authorization: this.storage_data.token
+                    } 
+                },
                 "columns": [
                     { "data": "id" },
                     { "data": "nombre" },
@@ -89,12 +95,12 @@ $(document).ready(() => {
                 window.location.href = "/";
             }
 
-            objUsuarios.init_datatables();            
-            
+            this.storage_data = JSON.parse(localStorage.getItem("currentUser"));            
+            objUsuario.init_datatables();
         },
     };
 
-    objUsuarios.init();
+    objUsuario.init();
 
 });
 
@@ -163,6 +169,10 @@ function LoadModal(id, nombre, apellido, rut, mail, telefono, password, estado, 
 
 function UpdateUser(){
     let table_instance = $('#table_perfiles').DataTable();
+<<<<<<< HEAD
+=======
+    
+>>>>>>> cf25a4800fbf647c6e9b5926c8b64459dc0d5f2b
     let id = $("#id_hdn").val();
     let nombre = $("#txt_nombre").val();
     let apellido = $("#txt_apellido").val();
