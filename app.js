@@ -15,11 +15,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 app.use('/perfiles', function(req, res) {
     res.render('perfiles');
 });
+
 app.use('/register', function(req, res) {
     res.render('registro');
+
+app.use('/usuarios', function(req, res){
+    res.render('usuarios');
 });
 
 module.exports = app;
