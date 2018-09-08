@@ -1,76 +1,153 @@
-$(document).ready(function() {
-        $("#btnGuardarfrm").click(function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: 'http://localhost:3001/usuarios/register',
-                method: 'POST',
-                dataType: 'json',
-                data: {
+$(document).ready(function () {
+    $("#btnGuardarfrm").click(function (e) {
+        e.preventDefault();
 
-                    nombre: $('#Nombre').val(),
-                    apellido: $('#Apellido').val(),
-                    run: $('#Run').val(),
-                    mail: $('#Email').val(),
-                    telefono: $('#Telefono').val(),
-                    password: $('#Pwd').val(),
-                    rptpassword: $('#Pwdrpt').val(),
-                },
-                success: function(data) {
-                    console.log("Guarde");
-                    console.log(data)
-                },
-                error: function(err) {
-                    console.log("Error");
-                    console.log(err)
-                }
-            })
+        if ($('#Nombre').val() === "") {
+            $('#Nombre').addClass('is-invalid');
+            return;
+        } else {
+            $('#Nombre').removeClass('is-invalid');
+        }
+
+        if ($('#Apellido').val() === "") {
+            $('#Apellido').addClass('is-invalid');
+            return;
+        } else {
+            $('#Apellido').removeClass('is-invalid');
+        }
+
+        if ($('#Run').val() === "") {
+            $('#Run').addClass('is-invalid');
+            return;
+        } else {
+            $('#Run').removeClass('is-invalid');
+
+            if (validate($('#Run').val()) === false) {
+                $.alert({
+                    title: 'Error!',
+                    content: 'El campo rut es Inválido',
+                });
+
+                $('#Run').val("");
+            }
+        }
+
+        if ($('#Email').val() === "") {
+            $('#Email').addClass('is-invalid');
+            return;
+        } else {
+            $('#Email').removeClass('is-invalid');
+
+            if (validar_email($('#Email').val()) === false) {
+                $.alert({
+                    title: 'Error!',
+                    content: 'El campo Email es Inválido',
+                });
+
+                $('#Email').val("");
+            }
+        }
+
+        if ($('#Telefono').val() === "") {
+            $('#Telefono').addClass('is-invalid');
+            return;
+        } else {
+            $('#Telefono').removeClass('is-invalid');
+        }
+
+        if ($('#Pwd').val() === "") {
+            $('#Pwd').addClass('is-invalid');
+            return;
+        } else {
+            $('#Pwd').removeClass('is-invalid');
+        }
+
+        if ($('#Pwdrpt').val() === "") {
+            $('#Pwdrpt').addClass('is-invalid');
+            return;
+        } else {
+            $('#Pwdrpt').removeClass('is-invalid');
+        }
+
+        if ($('#Pwd').val() !== $('#Pwdrpt').val()) {
+            $.alert({
+                title: 'Error!',
+                content: 'Las contraseñas deben ser iguales',
+            });
+
+            $('#Pwd, #Pwdrpt').addClass('is-invalid');
+        } else {
+            $('#Pwd, #Pwdrpt').removeClass('is-invalid');
+        }
+
+        $.ajax({
+            url: 'http://localhost:3001/usuarios/register',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                nombre: $('#Nombre').val(),
+                apellido: $('#Apellido').val(),
+                run: $('#Run').val(),
+                mail: $('#Email').val(),
+                telefono: $('#Telefono').val(),
+                password: $('#Pwd').val(),
+                rptpassword: $('#Pwdrpt').val(),
+            },
+            success: function (data) {
+                console.log(data);
+                $.alert({
+                    title: 'Registro!',
+                    content: 'Completado'
+                });
+            },
+            error: function (err) {
+
+            }
         })
     })
-    //Validador de RUT Front
-function checkRut(rut) {
-    // Despejar Puntos
-    var valor = rut.value.replace('.', '');
-    // Despejar Guión
-    valor = valor.replace('-', '');
+})
 
-    // Aislar Cuerpo y Dígito Verificador
-    cuerpo = valor.slice(0, -1);
-    dv = valor.slice(-1).toUpperCase();
+function validar_email(email) {
+    var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email) ? true : false;
+}
 
-    // Formatear RUN
-    rut.value = cuerpo + '-' + dv
+function clean(rut) {
+    return typeof rut === 'string'
+        ? rut.replace(/^0+|[^0-9kK]+/g, '').toUpperCase()
+        : ''
+}
 
-    // Si no cumple con el mínimo ej. (n.nnn.nnn)
-    if (cuerpo.length < 7) { rut.setCustomValidity("RUT Incompleto"); return false; }
-
-    // Calcular Dígito Verificador
-    suma = 0;
-    multiplo = 2;
-
-    // Para cada dígito del Cuerpo
-    for (i = 1; i <= cuerpo.length; i++) {
-
-        // Obtener su Producto con el Múltiplo Correspondiente
-        index = multiplo * valor.charAt(cuerpo.length - i);
-
-        // Sumar al Contador General
-        suma = suma + index;
-
-        // Consolidar Múltiplo dentro del rango [2,7]
-        if (multiplo < 7) { multiplo = multiplo + 1; } else { multiplo = 2; }
-
+function validate(rut) {
+    if (typeof rut !== 'string') {
+        return false
+    }
+    if (!/^0*(\d{1,3}(\.?\d{3})*)-?([\dkK])$/.test(rut)) {
+        return false
     }
 
-    // Calcular Dígito Verificador en base al Módulo 11
-    dvEsperado = 11 - (suma % 11);
+    rut = clean(rut)
 
-    // Casos Especiales (0 y K)
-    dv = (dv == 'K') ? 10 : dv;
-    dv = (dv == 0) ? 11 : dv;
+    var t = parseInt(rut.slice(0, -1), 10)
+    var m = 0
+    var s = 1
 
-    // Validar que el Cuerpo coincide con su Dígito Verificador
-    if (dvEsperado != dv) { rut.setCustomValidity("RUT Inválido"); return false; }
+    while (t > 0) {
+        s = (s + (t % 10) * (9 - m++ % 6)) % 11
+        t = Math.floor(t / 10)
+    }
 
-    // Si todo sale bien, eliminar errores (decretar que es válido)
-    rut.setCustomValidity('');
+    var v = s > 0 ? '' + (s - 1) : 'K'
+    return v === rut.slice(-1)
+}
+
+function format(rut) {
+    rut = clean(rut)
+
+    var result = rut.slice(-4, -1) + '-' + rut.substr(rut.length - 1)
+    for (var i = 4; i < rut.length; i += 3) {
+        result = rut.slice(-3 - i, -i) + '.' + result
+    }
+
+    return result
 }
