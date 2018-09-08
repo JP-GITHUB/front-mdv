@@ -8,6 +8,10 @@ $(document).ready(() => {
         objPerfiles.newPerfil();
     });
 
+    $("#btn_delete").click(function () {
+        objPerfiles.deletePerfil();
+    });
+
     var objPerfiles = {
         apiUrl: 'http://localhost:3001',
         storage_data: null,
@@ -58,6 +62,26 @@ $(document).ready(() => {
             
         },
 
+        deletePerfil: function(){
+            let table_instance = $('#table_perfiles').DataTable();
+            let id = $("#hidd_id").val();
+
+            $.ajax({
+                url: this.apiUrl + "/perfiles",
+                method: 'DELETE',
+                dataType: 'json',
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    table_instance.ajax.reload();
+                },
+                error: function (err) {
+
+                }
+            });
+        },
+
         init_datatables: function () {
             let table = $('#table_perfiles').DataTable({
                 "ajax": {
@@ -74,23 +98,30 @@ $(document).ready(() => {
                     { "data": "id" },
                     { "data": "nombre" },
                     { "data": "estado" },
-                    { "data": "created_at" },
-                    { "data": "updated_at" },
+                    {
+                        render: function (data, type, row) { return FormatoFecha(row.created_at); } 
+                    },
+                    { 
+                        render: function (data, type, row) { return FormatoFecha(row.updated_at); } 
+                    },
                     {
                         mRender: function (data, type, row) {
-                            var linkEdit = '<a class="table-edit btn-edit" href="#" data-id="' + row.id + '" data-toggle="modal" data-target="#edit_modal">Editar</a>';
+                            var linkEdit = '<button type="button" class="btn btn-success" data-id="' + row.id + '" data-toggle="modal" data-target="#edit_modal">'+
+                            '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Editar</button>';
                             linkEdit = linkEdit.replace("-1", row.ID);
 
                             //var linkDetails = '<a class="btn-details" data-id="' + row.id + '">Detalle</a>';
                             //linkDetails = linkDetails.replace("-1", row.ID);
-
-                            var linkDelete = '<a class="table-delete btn-delete" data-id="' + row.id + '">Eliminar</a>';
+                            
+                            var linkDelete = '<button type="button" id="dtBtonoRechazar" class="btn btn-danger" data-id="' + row.id + '"data-toggle="modal" data-target="#delete_modal">'+
+                            '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Eliminar</button>';
                             linkDelete = linkDelete.replace("-1", row.ID);
 
                             return /*linkDetails + " | " + */ linkEdit + " | " + linkDelete;
                         }
                     }
                 ],
+                "responsive": true
             });
 
             $('#table_perfiles tbody').on('click', 'tr', function () {
@@ -114,3 +145,29 @@ $(document).ready(() => {
     objPerfiles.init();
 
 });
+
+function FormatoFecha(fecha) {
+    //DECLARACION
+    var date = "";
+    var año = "";
+    var mes = "";
+    var dia = "";
+    var hora = "";
+    var minuto = "";
+    var segundo = "";
+    //ASIGNACION  
+    date = new Date(fecha);
+    año = date.getFullYear();
+    mes = date.getMonth() + 1;
+    dia = date.getDate();
+    hora = date.getHours();
+    minuto = date.getMinutes();
+    segundo = date.getSeconds();
+    if (mes < 10) { mes = '0' + mes }
+    if (dia < 10) { dia = '0' + dia }
+    if (hora < 10) { hora = '0' + hora }
+    if (minuto < 10) { minuto = '0' + minuto }
+    if (segundo < 10) { segundo = '0' + segundo }
+    var formatoFecha = "<div> Fecha: " + dia + "-" + mes + "-" + año + " </div><div> Hora &nbsp: " + hora + ":" + minuto + ":" + segundo + "</div>";
+    return formatoFecha;
+};

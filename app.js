@@ -32,7 +32,7 @@ app.use('/change_password', function(req, res) {
     res.render('change_password');
 });
 
-app.use('/usuarios', function(req, res){
+app.use('/usuarios', function(req, res) {
     res.render('usuarios');
 });
 
