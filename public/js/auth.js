@@ -1,5 +1,5 @@
 var objAuth = {
-    apiUrl: 'https://api-mdv.herokuapp.com',
+    apiUrl: 'http://localhost:3001',
     logginEmail(email, password) {
         $.ajax({
             url: this.apiUrl + '/auth/login',

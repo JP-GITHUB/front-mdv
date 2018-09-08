@@ -29,6 +29,7 @@ $(document).ready(function () {
                 });
 
                 $('#Run').val("");
+                return;
             }
         }
 
@@ -45,6 +46,7 @@ $(document).ready(function () {
                 });
 
                 $('#Email').val("");
+                return;
             }
         }
 
@@ -76,12 +78,13 @@ $(document).ready(function () {
             });
 
             $('#Pwd, #Pwdrpt').addClass('is-invalid');
+            return;
         } else {
             $('#Pwd, #Pwdrpt').removeClass('is-invalid');
         }
 
         $.ajax({
-            url: 'https://api-mdv.herokuapp.com/usuarios/register',
+            url: 'http://localhost:3001/usuarios/register',
             method: 'POST',
             dataType: 'json',
             data: {
