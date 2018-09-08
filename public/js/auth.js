@@ -46,7 +46,7 @@ var objAuth = {
     statusSession() {
         let currentUser = JSON.parse(localStorage.getItem("currentUser"));
         if (currentUser) {
-            if (currentUser.user_data.PERFIL.nombre === 'ADMIN') {
+            if (currentUser.user_data.PERFIL.nombre === 'ADMIN' || currentUser.user_data.PERFIL.nombre === 'ADMININSTRADOR' || currentUser.user_data.PERFIL.id === 1) {
                 $("#session_dynamic_option").append(
                     `<a class="dropdown-item" href="/usuarios">Administrar Usuario</a>
                      <a class="dropdown-item" href="/perfiles">Administrar Perfiles</a>`
