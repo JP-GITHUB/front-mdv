@@ -333,3 +333,7 @@ body {
 .content_table_perfiles {
     height: 450px;
 }
+
+.toolbar {
+    float:left;
+}
