@@ -35,19 +35,11 @@ $(document).ready(() => {
                     },
                     {
                         mRender: function (data, type, row) {
-<<<<<<< HEAD
                             var linkEdit = '<button type="button" class="btn btn-success"'+
                             'onclick="LoadModal('+row.id+',\''+ row.nombre+'\',\''+row.apellido+'\',\''+row.rut+'\',\''+row.mail+'\'' +
                             ',\''+row.telefono+'\',\''+row.password+'\',\''+row.estado+'\',\''+row.perfil_id+'\')"'+
                             'data-toggle="modal" data-target="#edit_modal">' +
                             '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Editar</button>';
-=======
-                            var linkEdit = '<button type="button" class="btn btn-success"' +
-                                'onclick="LoadModal(' + row.id + ',\'' + row.nombre + '\',\'' + row.apellido + '\',\'' + row.rut + '\',\'' + row.mail + '\'' +
-                                ',\'' + row.telefono + '\',\'' + row.password + '\',\'' + row.estado + '\')"' +
-                                'data-toggle="modal" data-target="#edit_modal">' +
-                                '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Editar</button>';
->>>>>>> e1fcef2d0d15a712f291a973a16c664fee13d131
                             linkEdit = linkEdit.replace("-1", row.ID);
 
                             var linkDetails = '<a class="table-detail" data-id="' + row.id + '">Detalle</a>';
@@ -106,7 +98,6 @@ $(document).ready(() => {
 
 });
 
-<<<<<<< HEAD
 function LoadModal(id, nombre, apellido, rut, mail, telefono, password, estado, perfil_id){
     var modal_ini = '<div id="edit_modal" class="modal" tabindex="-1" role="dialog">'+
                     '<select name="cbx_perfiles" id="cbx_perfiles" class="form-control">'+
@@ -171,72 +162,15 @@ function LoadModal(id, nombre, apellido, rut, mail, telefono, password, estado, 
 };
 
 function UpdateUser(){
-    let id = $("#id_hdn").val();
-=======
-function LoadModal(id, nombre, apellido, rut, mail, telefono, password, estado) {
-    var modal_ini = '<div id="edit_modal" class="modal" tabindex="-1" role="dialog">';
-    $("#edit_modal").html(modal_ini);
-    var content = '' +
-        '<div class="modal-dialog" role="document">' +
-        '<div class="modal-content">' +
-        '<div class="modal-header">' +
-        '<h5 class="modal-title">Panel de edición</h5>' +
-        '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
-        '<span aria-hidden="true">&times;</span>' +
-        '</button>' +
-        '</div>' +
-        '<div class="modal-body">' +
-        '<form>' +
-        '<div class="form-group">' +
-        '<label for="Nombre">Nombre</label>' +
-        '<input type="text" class="form-control" id="txt_nombre" value="' + nombre + '">' +
-        '</div>' +
-        '<div class="form-group">' +
-        '<label for="Apellido">Apellido</label>' +
-        '<input type="text" class="form-control" id="txt_apellido" value="' + apellido + '">' +
-        '</div>' +
-        '<div class="form-group">' +
-        '<label for="Rut">Rut</label>' +
-        '<input type="text" class="form-control" id="txt_rut" value="' + rut + '">' +
-        '</div>' +
-        '<div class="form-group">' +
-        '<label for="Mail">Mail</label>' +
-        '<input type="text" class="form-control" id="txt_mail" value="' + mail + '">' +
-        '</div>' +
-        '<div class="form-group">' +
-        '<label for="Telefono">Telefono</label>' +
-        '<input type="text" class="form-control" id="txt_telefono" value="' + telefono + '">' +
-        '</div>' +
-        '<div class="form-group">' +
-        '<label for="Contraseña">Contraseña</label>' +
-        '<input type="text" class="form-control" id="txt_contraseña" value="' + password + '">' +
-        '</div>' +
-        '</form>' +
-        '</div>' +
-        '<div class="modal-footer">' +
-        '<button type="button" class="btn btn-primary" onclick=UpdateUser(' + id + ') data-toggle="modal" data-target="#edit_modal">Save changes</button>' +
-        '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
-        '</div>' +
-        '</div>' +
-        '</div>'
-
-    $("#edit_modal").append(content);
-};
-
-function UpdateUser(id) {
     let table_instance = $('#table_perfiles').DataTable();
-
->>>>>>> e1fcef2d0d15a712f291a973a16c664fee13d131
+    let id = $("#id_hdn").val();
     let nombre = $("#txt_nombre").val();
     let apellido = $("#txt_apellido").val();
     let rut = $("#txt_rut").val();
     let mail = $("#txt_mail").val();
     let telefono = $("#txt_telefono").val();
     let password = $("#txt_contraseña").val();
-<<<<<<< HEAD
     let perfil = $("#cbx_perfiles").val();
-=======
->>>>>>> e1fcef2d0d15a712f291a973a16c664fee13d131
 
     $.ajax({
         method: "PUT",
