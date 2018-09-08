@@ -49,29 +49,48 @@
                                 </div>
                             </div>
                             <div id="new_modal" class="modal" tabindex="-1" role="dialog">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Crear perfil</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="Nombre">Nombre</label>
-                                                        <input type="text" class="form-control" id="txt_new" placeholder="Nombre">
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" id="btn_new" class="btn btn-primary" data-toggle="modal" data-target="#new_modal">Guardar</button>
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                            </div>
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Crear perfil</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="Nombre">Nombre</label>
+                                                    <input type="text" class="form-control" id="txt_new" placeholder="Nombre">
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" id="btn_new" class="btn btn-primary" data-toggle="modal" data-target="#new_modal">Guardar</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div id="delete_modal" class="modal" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Confirmación</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                                <h4>¿Esta seguro que desea eliminar el registro?</h4>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" id="btn_delete" class="btn btn-danger" data-toggle="modal" data-target="#delete_modal">Eliminar</button>
+                                            <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -85,4 +104,3 @@
         <script src="js/auth.js"></script>
         <script src="js/perfiles.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css"></script>
