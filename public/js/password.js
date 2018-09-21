@@ -3,7 +3,7 @@ $(document).ready(() => {
         e.preventDefault();
 
         $.ajax({
-            url: 'https://api-mdv.herokuapp.com/usuarios/forgot_password',
+            url: 'http://localhost:3001/usuarios/forgot_password',
             method: 'POST',
             dataType: 'json',
             data: {
@@ -33,7 +33,7 @@ $(document).ready(() => {
         let mail = JSON.parse(localStorage.getItem("currentUser")).email;
 
         $.ajax({
-            url: 'https://api-mdv.herokuapp.com/usuarios/change_password',
+            url: 'http://localhost:3001/usuarios/change_password',
             method: 'POST',
             dataType: 'json',
             data: {

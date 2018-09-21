@@ -14,7 +14,7 @@ $(document).ready(() => {
     });
 
     var objMain = {
-        apiUrl: 'https://api-mdv.herokuapp.com',
+        apiUrl: 'http://localhost:3001',
 
         getSchools: function () {
             $.ajax({

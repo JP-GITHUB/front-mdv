@@ -40,7 +40,8 @@
         ¿Estas registrado?
     </span>
     <div id="dropdown_session" class="dropdown_session dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             User
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -62,7 +63,8 @@
                             </div>
                             <div class="form-group">
                                 <label class="sr-only" for="lbl_pswd">Password</label>
-                                <input type="password" class="form-control" id="txt_pswd" placeholder="Contraseña" required>
+                                <input type="password" class="form-control" id="txt_pswd" placeholder="Contraseña"
+                                    required>
                                 <div class="help-block text-right">
                                     <a href="/forgot_password">¿Olvido su contraseña?</a>
                                 </div>
@@ -87,5 +89,9 @@
 
     </button>
     <div class="col-md-1 "></div>
-
 </nav>
+
+<template id="adm-dropdown-options">
+    <a class="dropdown-item" href="/usuarios">Administrar Usuario</a>
+    <a class="dropdown-item" href="/perfiles">Administrar Perfiles</a>
+</template>

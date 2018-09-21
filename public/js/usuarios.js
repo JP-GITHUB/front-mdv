@@ -2,13 +2,13 @@ var perfilContent = '';
 
 $(document).ready(() => {
     var objUsuario = {
-        apiUrl: 'https://api-mdv.herokuapp.com',
+        apiUrl: 'http://localhost:3001',
         storage_data: null,
         init_datatables: function () {
            
             $.ajax({
                 type:"GET",
-                url:"https://api-mdv.herokuapp.com/perfiles",
+                url:"http://localhost:3001/perfiles",
                 headers: {
                     authorization: this.storage_data.token
                 },
@@ -25,7 +25,7 @@ $(document).ready(() => {
 
             let table = $('#table_perfiles').DataTable({
                 "ajax": {
-                    url: 'https://api-mdv.herokuapp.com/usuarios',
+                    url: 'http://localhost:3001/usuarios',
                     headers: {
                         authorization: this.storage_data.token
                     } 
@@ -80,7 +80,7 @@ $(document).ready(() => {
         getPerfil(){
             $.ajax({
                 type:"GET",
-                url:"https://api-mdv.herokuapp.com/perfiles",
+                url:"http://localhost:3001/perfiles",
                 dataType:"json",
                 success(data){
                     let perfiles = data.data;
@@ -195,7 +195,7 @@ function UpdateUser(){
             perfil: perfil
         },
         dataType: "json",
-        url: "https://api-mdv.herokuapp.com/usuarios",
+        url: "http://localhost:3001/usuarios",
         success: function () {
             table_instance.ajax.reload();
         },
@@ -265,7 +265,7 @@ function Delete(id) {
             id: id
         },
         dataType: "json",
-        url: "https://api-mdv.herokuapp.com/usuarios",
+        url: "http://localhost:3001/usuarios",
         success: function () {
             table_instance.ajax.reload();
         },

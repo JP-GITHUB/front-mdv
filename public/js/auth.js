@@ -1,6 +1,11 @@
 var objAuth = {
-    apiUrl: 'https://api-mdv.herokuapp.com',
-    logginEmail(email, password) {
+    apiUrl: 'http://localhost:3001',
+    logginUser(email, password) {
+        if ($.trim(email) == "" || $.trim(password) == "") {
+            $.alert({ title: 'Error!', content: 'Ambos campos son requeridos' });
+            return;
+        }
+
         $.ajax({
             url: this.apiUrl + '/auth/login',
             data: {
@@ -19,10 +24,8 @@ var objAuth = {
 
                     objAuth.statusSession();
                 } else {
-                    $.alert({
-                        title: 'Error!',
-                        content: obj.msg,
-                    });
+                    $.alert({ title: 'Error!', content: obj.msg });
+                    $("#txt_email, #txt_pswd").val("");
                 }
             },
             error: function (err) {
@@ -39,18 +42,19 @@ var objAuth = {
         window.location.href = "/";
     },
 
-    checkSession(){
+    checkSession() {
         return (localStorage.getItem("currentUser")) ? true : false;
     },
 
     statusSession() {
         let currentUser = JSON.parse(localStorage.getItem("currentUser"));
         if (currentUser) {
-            if (currentUser.user_data.PERFIL.nombre === 'ADMIN' || currentUser.user_data.PERFIL.nombre === 'ADMININSTRADOR' || currentUser.user_data.PERFIL.id === 1) {
-                $("#session_dynamic_option").append(
-                    `<a class="dropdown-item" href="/usuarios">Administrar Usuario</a>
-                     <a class="dropdown-item" href="/perfiles">Administrar Perfiles</a>`
-                );
+            if (
+                currentUser.user_data.PERFIL.nombre === 'ADMIN' ||
+                currentUser.user_data.PERFIL.nombre === 'ADMININSTRADOR' ||
+                currentUser.user_data.PERFIL.id === 1
+            ) {
+                $("#session_dynamic_option").append($("adm-dropdown-options").html())
             }
 
             $(".dropdown_session").css("display", "block");
@@ -74,7 +78,7 @@ $(document).ready(() => {
         let email = $("#txt_email").val();
         let password = $("#txt_pswd").val();
 
-        objAuth.logginEmail(email, password);
+        objAuth.logginUser(email, password);
     });
 
     $("#btn_close_session").click(function (e) {
