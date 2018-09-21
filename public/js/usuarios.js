@@ -4,31 +4,32 @@ $(document).ready(() => {
     var objUsuario = {
         apiUrl: 'http://localhost:3001',
         storage_data: null,
+        current_obj_table: {},
         init_datatables: function () {
-           
+
             $.ajax({
-                type:"GET",
-                url:"http://localhost:3001/perfiles",
+                type: "GET",
+                url: this.apiUrl + '/perfiles',
                 headers: {
                     authorization: this.storage_data.token
                 },
-                dataType:"json",
-                success(data){
+                dataType: "json",
+                success(data) {
                     let perfiles = data.data;
-                    for (item in perfiles){
-                        perfilContent += '<option value="'+perfiles[item].id+'">'+perfiles[item].nombre+'</option>';                    
+                    for (item in perfiles) {
+                        perfilContent += '<option value="' + perfiles[item].id + '">' + perfiles[item].nombre + '</option>';
                     };
                     $("#cbx_perfiles").html(perfilContent);
                 },
-                error(err){}
+                error(err) { }
             });
 
             let table = $('#table_perfiles').DataTable({
                 "ajax": {
-                    url: 'http://localhost:3001/usuarios',
+                    url: this.apiUrl + '/usuarios',
                     headers: {
                         authorization: this.storage_data.token
-                    } 
+                    }
                 },
                 "columns": [
                     { "data": "id" },
@@ -39,33 +40,36 @@ $(document).ready(() => {
                     { "data": "telefono" },
                     { "data": "password" },
                     { "data": "estado" },
-                    {
+                    /*{
                         render: function (data, type, row) { return FormatoFecha(row.updated_at); }
-                    },
+                    },*/
                     {
                         mRender: function (data, type, row) {
-                            var linkEdit = '<button type="button" class="btn btn-success"'+
-                            'onclick="LoadModal('+row.id+',\''+ row.nombre+'\',\''+row.apellido+'\',\''+row.rut+'\',\''+row.mail+'\'' +
-                            ',\''+row.telefono+'\',\''+row.password+'\',\''+row.estado+'\',\''+row.perfil_id+'\')"'+
-                            'data-toggle="modal" data-target="#edit_modal">' +
-                            '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Editar</button>';
-                            linkEdit = linkEdit.replace("-1", row.ID);
+                            var linkEdit = `<button type="button" class="btn-edit btn btn-success" data-toggle="modal" data-target="#edit_modal">Editar</button>`;
+                            //linkEdit = linkEdit.replace("-1", row.ID);
 
-                            var linkDetails = '<a class="table-detail" data-id="' + row.id + '">Detalle</a>';
-                            linkDetails = linkDetails.replace("-1", row.ID);
+                            var linkDelete = `<button type="button" class="btn-del btn btn-danger" data-toggle="modal" data-target="#delete_modal">Eliminar</button>`;
+                            //linkDelete = linkDelete.replace("-1", row.ID);
 
-                            var linkDelete = '<button type="button" id="dtBtonoRechazar" class="btn btn-danger" onclick="LoadDelete(' + row.id + ')"' +
-                                'data-toggle="modal" data-target="#delete_modal">' +
-                                '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Eliminar</button>';
-                            linkDelete = linkDelete.replace("-1", row.ID);
-
-                            return /*linkDetails + " | " + */linkEdit + " | " + linkDelete;
+                            return linkEdit + " | " + linkDelete;
                         }
                     }
                 ],
                 "responsive": true
-
             });
+
+            $('#table_perfiles tbody').on('click', 'td button', function (){
+                let data_selected = table.row($(this).parent().parent()).data();
+                
+                if($(this).hasClass('btn-edit')){
+                    objUsuario.loadDataModalEdit(data_selected);
+                }
+
+                if($(this).hasClass('btn-del')){
+                    objUsuario.loadModalDel(data_selected);
+                }                    
+            });
+
             $('a.toggle-vis').on('click', function (e) {
                 e.preventDefault();
 
@@ -77,19 +81,73 @@ $(document).ready(() => {
             });
         },
 
-        getPerfil(){
+        loadDataModalEdit: function (data) {
+           $("#id_hdn").val($.trim(data.id));
+           $("#txt_nombre").val($.trim(data.nombre));
+           $("#txt_apellido").val($.trim(data.apellido));
+           $("#txt_rut").val($.trim(data.rut));
+           $("#txt_mail").val($.trim(data.mail));
+           $("#txt_telefono").val($.trim(data.telefono));
+           $("#txt_contraseña").val($.trim(data.password));
+           $("#cbx_perfiles").val($.trim(data.perfil_id));
+        },
+
+        loadModalDel: function (data) {
+            $("#btn_modal_del").attr('data-id', $.trim(data.id));
+        },
+
+        edit_user: function() {
+            let table_instance = $('#table_perfiles').DataTable();
+        
+            let id = $("#id_hdn").val();
+            let nombre = $("#txt_nombre").val();
+            let apellido = $("#txt_apellido").val();
+            let rut = $("#txt_rut").val();
+            let mail = $("#txt_mail").val();
+            let telefono = $("#txt_telefono").val();
+            let password = $("#txt_contraseña").val();
+            let perfil = $("#cbx_perfiles").val();
+        
             $.ajax({
-                type:"GET",
-                url:"http://localhost:3001/perfiles",
-                dataType:"json",
-                success(data){
-                    let perfiles = data.data;
-                    var perfilContent= '<option value="0">Seleccione perfil</option>';
-                    for (item in perfiles){
-                        perfilContent += '<option value="'+item.id+'">'+item.nombre+'</option>';                    
-                    };
+                method: "PUT",
+                data: {
+                    id: id,
+                    nombre: nombre,
+                    apellido: apellido,
+                    rut: rut,
+                    mail: mail,
+                    telefono: telefono,
+                    password: password,
+                    perfil: perfil
                 },
-                error(err){}
+                dataType: "json",
+                url: objUsuario.apiUrl + "/usuarios",
+                success: function (data) {
+                    table_instance.ajax.reload();
+                    console.log(data)
+                },
+                error: function (err) {
+        
+                }
+            });
+        },
+        
+        delete_user: function(id) {
+            let table_instance = $('#table_perfiles').DataTable();
+        
+            $.ajax({
+                method: "DELETE",
+                data: {
+                    id: id
+                },
+                dataType: "json",
+                url: objUsuario.apiUrl + "/usuarios",
+                success: function () {
+                    table_instance.ajax.reload();
+                },
+                error: function (err) {
+        
+                }
             });
         },
 
@@ -98,112 +156,20 @@ $(document).ready(() => {
                 window.location.href = "/";
             }
 
-            this.storage_data = JSON.parse(localStorage.getItem("currentUser"));            
+            this.storage_data = JSON.parse(localStorage.getItem("currentUser"));
             objUsuario.init_datatables();
+            
+            $("#btn_modal_update").on('click', this.edit_user);
+
+            $("#btn_modal_del").on('click', function(){
+                objUsuario.delete_user($("#btn_modal_del").attr('data-id'));
+            });
         },
     };
 
     objUsuario.init();
 
 });
-
-function LoadModal(id, nombre, apellido, rut, mail, telefono, password, estado, perfil_id){
-    var modal_ini = '<div id="edit_modal" class="modal" tabindex="-1" role="dialog">'+
-                    '<select name="cbx_perfiles" id="cbx_perfiles" class="form-control">'+
-                    '</select>';
-    $("#edit_modal").html(modal_ini);
-    var content = '<input type="hidden" id ="id_hdn" value="'+id+'"/>'+
-    '<div class="modal-dialog" role="document">'+
-        '<div class="modal-content">'+
-            '<div class="modal-header">'+
-                '<h5 class="modal-title">Panel de edición</h5>'+
-                '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
-                    '<span aria-hidden="true">&times;</span>'+
-                '</button>'+
-            '</div>'+
-            '<div class="modal-body">'+
-                '<form>'+
-                    '<div class="form-group">'+
-                        '<label for="Nombre">Nombre</label>'+
-                        '<input type="text" class="form-control" id="txt_nombre" value="'+nombre+'">'+
-                    '</div>'+
-                    '<div class="form-group">'+
-                        '<label for="Apellido">Apellido</label>'+
-                        '<input type="text" class="form-control" id="txt_apellido" value="'+apellido+'">'+
-                    '</div>'+
-                    '<div class="form-group">'+
-                        '<label for="Rut">Rut</label>'+
-                        '<input type="text" class="form-control" id="txt_rut" value="'+rut+'">'+
-                    '</div>'+
-                    '<div class="form-group">'+
-                        '<label for="Mail">Mail</label>'+
-                        '<input type="text" class="form-control" id="txt_mail" value="'+mail+'">'+
-                    '</div>'+
-                    '<div class="form-group">'+
-                        '<label for="Telefono">Telefono</label>'+
-                        '<input type="text" class="form-control" id="txt_telefono" value="'+telefono+'">'+
-                    '</div>'+
-                    '<div class="form-group">'+
-                        '<label for="Contraseña">Contraseña</label>'+
-                        '<input type="text" class="form-control" id="txt_contraseña" value="'+password+'">'+
-                    '</div>'+
-                    '<div class="form-group">'+
-                        '<select name="cbx_perfiles" id="cbx_perfiles" class="form-control">'+
-                            perfilContent+
-                        '</select>'+
-                    '</div>'+
-                '</form>'+
-            '</div>'+
-            '<div class="modal-footer">'+
-                '<button type="button" id="btn_save" class="btn btn-primary" data-toggle="modal" data-target="#edit_modal">Save changes</button>'+
-                '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>'+
-            '</div>'+
-        '</div>'+
-    '</div>'
-    
-    $("#edit_modal").html(content);
-    $("#cbx_perfiles").val(perfil_id);
-
-    $("#btn_save").on("click", function(e) {
-        e.preventDefault();
-        UpdateUser();
-    })
-};
-
-function UpdateUser(){
-    let table_instance = $('#table_perfiles').DataTable();
-    
-    let id = $("#id_hdn").val();
-    let nombre = $("#txt_nombre").val();
-    let apellido = $("#txt_apellido").val();
-    let rut = $("#txt_rut").val();
-    let mail = $("#txt_mail").val();
-    let telefono = $("#txt_telefono").val();
-    let password = $("#txt_contraseña").val();
-    let perfil = $("#cbx_perfiles").val();
-
-    $.ajax({
-        method: "PUT",
-        data: {
-            id: id,
-            nombre: nombre,
-            apellido: apellido,
-            rut: rut,
-            mail: mail,
-            telefono: telefono,
-            password: password,
-            perfil: perfil
-        },
-        dataType: "json",
-        url: "http://localhost:3001/usuarios",
-        success: function () {
-            table_instance.ajax.reload();
-        },
-        error: function (err) {
-
-        }
-    });
-}
 
 function FormatoFecha(fecha) {
     //DECLARACION
@@ -229,48 +195,4 @@ function FormatoFecha(fecha) {
     if (segundo < 10) { segundo = '0' + segundo }
     var formatoFecha = "<div> Fecha: " + dia + "-" + mes + "-" + año + " </div><div> Hora &nbsp: " + hora + ":" + minuto + ":" + segundo + "</div>";
     return formatoFecha;
-};
-
-function LoadDelete(id) {
-    var modal_ini = '<div id="delete_modal" class="modal" tabindex="-1" role="dialog">';
-    $("#delete_modal").html(modal_ini);
-    var content = '' +
-        '<div class="modal-dialog" role="document">' +
-        '<div class="modal-content">' +
-        '<div class="modal-header">' +
-        '<h5 class="modal-title">Confirmación</h5>' +
-        '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
-        '<span aria-hidden="true">&times;</span>' +
-        '</button>' +
-        '</div>' +
-        '<div class="modal-body">' +
-        '<h4>¿Esta seguro que desea eliminar el registro?</h4>' +
-        '</div>' +
-        '<div class="modal-footer">' +
-        '<button type="button" class="btn btn-danger" onclick=Delete(' + id + ') data-toggle="modal" data-target="#delete_modal">Eliminar</button>' +
-        '<button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>' +
-        '</div>' +
-        '</div>' +
-        '</div>'
-
-    $("#delete_modal").append(content);
-};
-
-function Delete(id) {
-    let table_instance = $('#table_perfiles').DataTable();
-
-    $.ajax({
-        method: "DELETE",
-        data: {
-            id: id
-        },
-        dataType: "json",
-        url: "http://localhost:3001/usuarios",
-        success: function () {
-            table_instance.ajax.reload();
-        },
-        error: function (err) {
-
-        }
-    });
 };
