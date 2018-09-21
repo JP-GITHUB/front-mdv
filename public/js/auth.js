@@ -54,7 +54,7 @@ var objAuth = {
                 currentUser.user_data.PERFIL.nombre === 'ADMININSTRADOR' ||
                 currentUser.user_data.PERFIL.id === 1
             ) {
-                $("#session_dynamic_option").append($("adm-dropdown-options").html())
+                $("#session_dynamic_option").append($("#adm-dropdown-options").html())
             }
 
             $(".dropdown_session").css("display", "block");
