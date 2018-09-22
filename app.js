@@ -20,6 +20,10 @@ app.use('/perfiles', function(req, res) {
     res.render('perfiles');
 });
 
+app.use('/permisos', function(req, res) {
+    res.render('permisos');
+});
+
 app.use('/register', function(req, res) {
     res.render('registro');
 });

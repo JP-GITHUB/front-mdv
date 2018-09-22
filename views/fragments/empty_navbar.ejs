@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
 
-    <a href="index.html" class="navbar-brand text-center">
-        <img src="img/logo.png" id="logo-nav"> <p class="label-title">MDV Express</p>
+    <a href="/" class="navbar-brand text-center">
+        <img src="img/logo.png" id="logo-nav">
+        <p class="label-title">MDV Express</p>
     </a>
 
     <div>
@@ -9,8 +10,8 @@
             ¿Estas registrado?
         </span>
         <div id="dropdown_session" class="dropdown_session dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 User
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -31,7 +32,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="lbl_pswd">Password</label>
-                                    <input type="password" class="form-control" id="txt_pswd" placeholder="Contraseña" required>
+                                    <input type="password" class="form-control" id="txt_pswd" placeholder="Contraseña"
+                                        required>
                                     <div class="help-block text-right">
                                         <a href="">¿Olvido su contraseña?</a>
                                     </div>
@@ -53,3 +55,9 @@
         </li>
     </div>
 </nav>
+
+<template id="adm-dropdown-options">
+    <a class="dropdown-item" href="/usuarios">Administrar Usuario</a>
+    <a class="dropdown-item" href="/perfiles">Administrar Perfiles</a>
+    <a class="dropdown-item" href="/permisos">Administrar Permisos</a>
+</template>

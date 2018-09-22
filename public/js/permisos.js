@@ -1,5 +1,9 @@
 $(document).ready(() => {
 
+    $("#cbx_perfil").on('change', () => {
+        let selected = $("#cbx_perfil").val();
+    })
+
     $("#btn_save").click(function () {
         objPerfiles.editPerfil();
     });
@@ -41,7 +45,7 @@ $(document).ready(() => {
 
         },
 
-        newPerfil: function() {
+        newPerfil: function () {
             let table_instance = $('#table_perfiles').DataTable();
             let nombre = $("#txt_new").val();
 
@@ -59,10 +63,10 @@ $(document).ready(() => {
 
                 }
             });
-            
+
         },
 
-        deletePerfil: function(){
+        deletePerfil: function () {
             let table_instance = $('#table_perfiles').DataTable();
             let id = $("#hidd_id").val();
 
@@ -96,12 +100,12 @@ $(document).ready(() => {
                     { "data": "estado" },
                     {
                         mRender: function (data, type, row) {
-                            var linkEdit = '<button type="button" class="btn btn-success" data-id="' + row.id + '" data-toggle="modal" data-target="#edit_modal">'+
-                            '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Editar</button>';
+                            var linkEdit = '<button type="button" class="btn btn-success" data-id="' + row.id + '" data-toggle="modal" data-target="#edit_modal">' +
+                                '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Editar</button>';
                             linkEdit = linkEdit.replace("-1", row.ID);
 
-                            var linkDelete = '<button type="button" id="dtBtonoRechazar" class="btn btn-danger" data-id="' + row.id + '"data-toggle="modal" data-target="#delete_modal">'+
-                            '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Eliminar</button>';
+                            var linkDelete = '<button type="button" id="dtBtonoRechazar" class="btn btn-danger" data-id="' + row.id + '"data-toggle="modal" data-target="#delete_modal">' +
+                                '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Eliminar</button>';
                             linkDelete = linkDelete.replace("-1", row.ID);
 
                             return linkEdit + " | " + linkDelete;
@@ -124,8 +128,8 @@ $(document).ready(() => {
                 window.location.href = "/";
             }
 
-            this.storage_data = JSON.parse(localStorage.getItem("currentUser")); 
-            objPerfiles.init_datatables();
+            this.storage_data = JSON.parse(localStorage.getItem("currentUser"));
+            //objPerfiles.init_datatables();
         },
     };
 

@@ -10,8 +10,20 @@
             <div class="container ">
                 <div class="row ">
                     <div class="col-md-12 content_table_perfiles">
-                        <h1>Administración de Perfiles</h1>
+                        <h1>Administración de Permisos</h1>
 
+                        <div class="row">
+                            <div class="col-8">
+                                <select id="cbx_perfil" class="custom-select">
+                                    <option selected>Seleccionar Perfil</option>
+                                    <option value="1">ADMIN</option>
+                                    <option value="2">VENDEDOR</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <!--
                         <div class="row float-right mt-2">
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#new_modal">Agregar perfil nuevo</button>
                         </div>
@@ -26,6 +38,7 @@
                                 </tr>
                             </thead>
                         </table>
+                        -->
 
                         <div id="edit_modal" class="modal" tabindex="-1" role="dialog">
                             <div class="modal-dialog" role="document">
@@ -108,6 +121,5 @@
 </div>
 
 <%- include('fragments/footer') %>
-<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
 <script src="js/auth.js"></script>
-<script src="js/perfiles.js"></script>
+<script src="js/permisos.js"></script>

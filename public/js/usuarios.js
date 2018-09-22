@@ -4,7 +4,6 @@ $(document).ready(() => {
     var objUsuario = {
         apiUrl: 'http://localhost:3001',
         storage_data: null,
-        current_obj_table: {},
         init_datatables: function () {
 
             $.ajax({
