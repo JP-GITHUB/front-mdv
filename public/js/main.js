@@ -26,7 +26,7 @@ $(document).ready(() => {
 
                     $.each(obj['schools'], function (index, data) {
 
-                        tmp_menu_school += '<a class="dropdown-item" href="/catalogo">' + data.name + '</a><div class="dropdown-divider"></div>';
+                        tmp_menu_school += '<a class="dropdown-item" href="/catalogo">' + data.name + '</a>';
                     });
 
                     $("#nav-app .dropdown-menu").html(tmp_menu_school);
