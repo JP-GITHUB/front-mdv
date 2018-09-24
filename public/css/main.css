@@ -44,6 +44,11 @@ body {
     margin-bottom: 10px;
 }
 
+.navbar-principal .btn-outline-dark {
+    color: #949494;
+    border-color: #949494;
+}
+
 .navbar-brand p {
     margin-bottom: 0;
     font-size: 1rem;
@@ -99,6 +104,11 @@ ul.nav a:hover {
 
 #login-dp .form-group {
     margin-bottom: 10px;
+}
+
+#loginBtn .dropdown-menu {
+    left: unset;
+    right: 0;
 }
 
 .btn-fb {
@@ -239,6 +249,10 @@ body {
     margin-right: -500px;
 }
 
+@media (min-width: 1200px) {
+    
+}
+
 /* Sidebar Styles */
 
 .sidebar-nav {
@@ -315,6 +329,7 @@ body {
 #loginBtn {
     display: none;
     margin-right: 5px;
+    color: white;
 }
 
 /*Pagina de registro*/
