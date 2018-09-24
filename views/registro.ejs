@@ -1,0 +1,62 @@
+<%- include('fragments/header') %>
+
+    <div id="wrapper">
+        <%- include('fragments/sidebar') %>
+            <div id="page-content-wrapper">
+                <header>
+                    <%- include('fragments/navbar') %>
+                </header>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="container" id="registration-form">
+
+                                <div class="frm">
+                                    <h3>Completa tu registro</h3>
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="Nombre">Nombre:</label>
+                                            <input type="text" class="form-control" id="Nombre" placeholder="Ingrese su nombre" required="*Campo necesario para registro">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Apellido">Apellido:</label>
+                                            <input type="text" class="form-control" id="Apellido" placeholder="Ingrese su apellido" required="*Campo necesario para registro">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Run">Run:</label>
+                                            <input type="text" class="form-control" id="Run" placeholder="Ingrese Rut" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Email">Email:</label>
+                                            <input type="email" class="form-control" id="Email" autocomplete="username email" placeholder="ejemplo@ejemplo.cl" required="*Campo necesario para registro">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Telefono">Teléfono celular:</label>
+                                            <input type="number" class="form-control" id="Telefono" placeholder="55251212" required="*Campo necesario para registro">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Pwd">Password:</label>
+                                            <input type="password" class="form-control" id="Pwd" autocomplete="current-password" placeholder="Ingrese su contraseña" required="*Campo necesario para registro">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Pwdrpt">Reingrese su password:</label>
+                                            <input type="password" class="form-control" id="Pwdrpt" autocomplete="new-password" placeholder="Reingrese su contraseña" required="*Campo necesario para registro">
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" id="btnGuardarfrm" class="btn btn-success btn-lg">Guardar</button>
+                                            <a href="/" class="btn btn-success btn-lg">Volver</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <%- include('fragments/footer_part') %>
+            </div>
+    </div>
+
+
+    <%- include('fragments/footer') %>
+    <script src="js/registro.js"></script>

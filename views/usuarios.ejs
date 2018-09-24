@@ -1,0 +1,108 @@
+<%- include('fragments/header') %>
+
+<div id="wrapper">
+    <div id="page-content-wrapper">
+        <header>
+            <%- include('fragments/empty_navbar') %>
+        </header>
+
+        <div>
+            <div class="container-fluid ">
+                <div class="row ">
+                    <div class="col-md-12 content_table_perfiles">
+                        <h1>Administración de Usuarios</h1>
+
+                        <table id="table_perfiles" class="table_perfiles display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>NOMBRE</th>
+                                    <th>APELLIDO</th>
+                                    <th>RUT</th>
+                                    <th>MAIL</th>
+                                    <th>TELEFONO</th>
+                                    <th>CONTRASEÑA</th>
+                                    <th>ESTADO</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+
+                <%- include('fragments/footer_part') %>
+            </div>
+        </div>
+    </div>
+
+    <div id="edit_modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" class="form-control" id="id_hdn" />
+                        <div class="form-group">
+                            <label for="Nombre">Nombre</label>
+                            <input type="text" class="form-control" id="txt_nombre" value=" nombre + '">
+                        </div>
+                        <div class="form-group">
+                            <label for="Apellido">Apellido</label>
+                            <input type="text" class="form-control" id="txt_apellido" value=" apellido + '">
+                        </div>
+                        <div class="form-group">
+                            <label for="Rut">Rut</label>
+                            <input type="text" class="form-control" id="txt_rut" value=" rut + '">
+                        </div>
+                        <div class="form-group">
+                            <label for="Mail">Mail</label>
+                            <input type="text" class="form-control" id="txt_mail" value=" mail + '">
+                        </div>
+                        <div class="form-group">
+                            <label for="Telefono">Telefono</label>
+                            <input type="text" class="form-control" id="txt_telefono" value=" telefono + '">
+                        </div>
+                        <div class="form-group">
+                            <label for="Contraseña">Contraseña</label>
+                            <input type="text" class="form-control" id="txt_contraseña" value=" password + '">
+                        </div>
+                        <div class="form-group">
+                            <select name="cbx_perfiles" id="cbx_perfiles" class="form-control"></select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn_modal_update" class="btn btn-primary">Actualizar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="delete_modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4>¿Esta seguro que desea eliminar el registro?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn_modal_del" class="btn btn-danger" data-toggle="modal" data-id="" data-target="#delete_modal">Eliminar</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('fragments/footer') %>
+    <script src="js/auth.js"></script>
+    <script src="js/usuarios.js"></script>

@@ -1,23 +1,73 @@
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.btn,
+.form-control,
+.dropdown-menu {
+    border-radius: 0;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active:focus,
+.btn-secondary:not(:disabled):not(.disabled):active:focus,
+.show>.btn-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.1rem rgba(108, 117, 125, .5);
+}
+
+.form-control:focus {
+    border-color: #bd7f82;
+    box-shadow: 0 0 0 0.1rem rgba(181, 47, 47, 0.25);
+}
+
 .content-imgs-rotate {
-    padding: 4%;
-    height: 350px;
+    padding: 2%;
 }
 
 .content-imgs-rotate img {
-    height: 100%;
+    height: 400px;
     width: 100%;
 }
 
-.row {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
+/* CSS NavBar */
 
 #logo-nav {
-    width: 42px;
-    height: 42px;
+    width: 50px;
+    height: 50px;
     align-self: auto;
 }
+
+.navbar-principal {
+    background-color: #000;
+    background-image: url(http://designwoop.com/uploads/2012/03/19_free_subtle_textures_3px_tile.jpg);
+    min-height: 100px;
+    border-bottom: 1px #d4bebe solid;
+    margin-bottom: 10px;
+}
+
+.navbar-brand p {
+    margin-bottom: 0;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+li.nav-item {
+    padding: 0 10px;
+}
+
+ul.nav a:hover {
+    color: #fff !important;
+}
+
+/* Fin CSS NavBar */
 
 /*CSS Para la barrita de Login*/
 
@@ -260,6 +310,72 @@ body {
     }
 }
 
-.dropdown_session, #span_uareregistered, #loginBtn {
+.dropdown_session,
+#span_uareregistered,
+#loginBtn {
     display: none;
+    margin-right: 5px;
+}
+
+/*Pagina de registro*/
+
+#registration-form {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+#registration-form .frm {
+    min-width: 250px;
+    padding: 0 35px;
+    background-size: 100% 100%;
+    background-color: white;
+}
+
+#registration-form h1 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+#registration-form .form-control {
+    width: 90%;
+    padding: 12px 20px;
+    height: auto;
+}
+
+@media screen and (max-width: 700px) {
+    #registration-form .image {
+        width: 30%;
+        background-position: 60%;
+    }
+    #registration-form .frm {
+        width: 70%;
+    }
+    #registration-form .form-control {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #registration-form .image {
+        display: none;
+    }
+    #registration-form .frm {
+        width: 100%;
+    }
+    #registration-form h1 {
+        text-align: center;
+    }
+    #registration-form .btn {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+.content_table_perfiles {
+    height: 450px;
+    margin-bottom: 60px;
+}
+
+.toolbar {
+    float: left;
 }
