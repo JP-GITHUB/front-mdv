@@ -398,3 +398,7 @@ body {
 .toolbar {
     float: left;
 }
+
+.forgot-password{
+    min-height: 500px;
+}
