@@ -1,5 +1,5 @@
 var objAuth = {
-    apiUrl: 'http://localhost:3001',
+    apiUrl: 'https://api-mdv.herokuapp.com',
     logginUser(email, password) {
         if ($.trim(email) == "" || $.trim(password) == "") {
             $.alert({ title: 'Error!', content: 'Ambos campos son requeridos' });

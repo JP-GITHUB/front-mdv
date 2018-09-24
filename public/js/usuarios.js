@@ -2,7 +2,7 @@ var perfilContent = '';
 
 $(document).ready(() => {
     var objUsuario = {
-        apiUrl: 'http://localhost:3001',
+        apiUrl: 'https://api-mdv.herokuapp.com',
         storage_data: null,
         init_datatables: function () {
 

@@ -13,7 +13,7 @@ $(document).ready(() => {
     });
 
     var objPerfiles = {
-        apiUrl: 'http://localhost:3001',
+        apiUrl: 'https://api-mdv.herokuapp.com',
         storage_data: null,
         editPerfil: function () {
             let table_instance = $('#table_perfiles').DataTable();
