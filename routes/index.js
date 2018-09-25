@@ -5,8 +5,8 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-router.get('/catalogo', function(req, res, next) {
-  res.render('catalogo');
+router.get('/catalogo/:id', function(req, res, next) {
+  res.render('catalogo', {id: req.params.id});
 });
 
 router.get('/checkout', function(req, res, next) {

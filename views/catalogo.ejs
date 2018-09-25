@@ -1,194 +1,70 @@
 <%- include('fragments/header') %>
 
-    <div id="wrapper">
-        <%- include('fragments/sidebar') %>
-            <div id="page-content-wrapper">
-                <header>
-                    <%- include('fragments/navbar') %>
-                </header>
+<div id="wrapper">
+    <%- include('fragments/sidebar') %>
+    <div id="page-content-wrapper">
+        <header>
+            <%- include('fragments/navbar') %>
+        </header>
 
-                <div class="root-home ">
-                    <div class="container-fluid content-catalogo">
-                        <aside class="float-left">
-                            <div class="card">
-                                <article class="card-group-item">
-                                    <header class="card-header">
-                                        <h6 class="title">Categorias</h6>
-                                    </header>
-                                    <div class="filter-content">
-                                        <div class="list-group list-group-flush">
-                                            <a href="#" class="list-group-item">Poleras
-                                                <span class="float-right badge badge-secondary round">142</span>
-                                            </a>
-                                            <a href="#" class="list-group-item">Pantalones
-                                                <span class="float-right badge badge-secondary round">3</span>
-                                            </a>
-                                            <a href="#" class="list-group-item">Buzo Completo
-                                                <span class="float-right badge badge-secondary round">32</span>
-                                            </a>
-                                            <a href="#" class="list-group-item">Poleron
-                                                <span class="float-right badge badge-secondary round">12</span>
-                                            </a>
-                                        </div>
-                                        <!-- list-group .// -->
-                                    </div>
-                                </article>
-                            </div>
-                            <!-- card.// -->
-                        </aside>
+        <!-- Info Params -->
+        <template id="template_info">
+            <input type="hidden" id="hidd_id_colegio" value="<%= id %>">
+        </template>
 
-                        <div class="row">
-                            <div class="col-12">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item">
-                                            <a href="#">Inicio</a>
-                                        </li>
-                                        <li class="breadcrumb-item">
-                                            <a href="#">Colegio 1</a>
-                                        </li>
-                                        <li class="breadcrumb-item active" aria-current="page">Uniformes</li>
-                                    </ol>
-                                </nav>
-                            </div>
-                            <div class="col-12">
-                                <img src="img/colegios/foto_colegio.PNG" class="img-colegio" alt="">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <figure class="card card-product">
-                                    <div class="img-wrap">
-                                        <img src="img/uniformes/confecciones-margarita-del-villar-universitario-el-salvador-10.jpg">
-                                    </div>
-                                    <figcaption class="info-wrap">
-                                        <h4 class="title">Liceo Manuel Salas</h4>
-                                        <p class="desc">Buzo</p>
-                                        <div class="rating-wrap">
-                                            <ul class="rating-stars">
-                                                <li style="width:80%" class="stars-active">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </li>
-                                            </ul>
-                                            <div class="label-rating">132 visitados</div>
-                                            <div class="label-rating">154 comprados </div>
-                                        </div>
-                                        <!-- rating-wrap.// -->
-                                    </figcaption>
-                                    <div class="bottom-wrap">
-                                        <a href="" class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#exampleModalCenter">Agregar</a>
-                                        <div class="price-wrap h5">
-                                            <span class="price-new">$1280</span>
-                                            <del class="price-old">$1980</del>
-                                        </div>
-                                        <!-- price-wrap.// -->
-                                    </div>
-                                    <!-- bottom-wrap.// -->
-                                </figure>
-                            </div>
-                            <!-- col // -->
-                            <div class="col-md-4">
-                                <figure class="card card-product">
-                                    <div class="img-wrap">
-                                        <img src="img/uniformes/confecciones-margarita-del-villar-universitario-el-salvador-11.jpg">                                        </div>
-                                    <figcaption class="info-wrap">
-                                        <h4 class="title">Universitario del Salvador</h4>
-                                        <p class="desc">Buzo</p>
-                                        <div class="rating-wrap">
-                                            <ul class="rating-stars">
-                                                <li style="width:80%" class="stars-active">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </li>
-                                            </ul>
-                                            <div class="label-rating">132 visitados</div>
-                                            <div class="label-rating">154 comprados </div>
-                                        </div>
-                                        <!-- rating-wrap.// -->
-                                    </figcaption>
-                                    <div class="bottom-wrap">
-                                        <a href="" class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#exampleModalLong">Agregar</a>
-                                        <div class="price-wrap h5">
-                                            <span class="price-new">$1280</span>
-                                            <del class="price-old">$1980</del>
-                                        </div>
-                                        <!-- price-wrap.// -->
-                                    </div>
-                                    <!-- bottom-wrap.// -->
-                                </figure>
-                            </div>
-                            <!-- col // -->
-                            <div class="col-md-4">
-                                <figure class="card card-product">
-                                    <div class="img-wrap">
-                                        <img src="img/uniformes/confecciones-margarita-del-villar-universitario-el-salvador-12.jpg">
-                                    </div>
-                                    <figcaption class="info-wrap">
-                                        <h4 class="title">Universitario del Sarvador</h4>
-                                        <p class="desc">Uniforme</p>
-                                        <div class="rating-wrap">
-                                            <ul class="rating-stars">
-                                                <li style="width:80%" class="stars-active">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </li>
-                                            </ul>
-                                            <div class="label-rating">132 visitados</div>
-                                            <div class="label-rating">154 comprados </div>
-                                        </div>
-                                        <!-- rating-wrap.// -->
-                                    </figcaption>
-                                    <div class="bottom-wrap">
-                                        <a href="" class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#exampleModalLong">Agregar</a>
-                                        <div class="price-wrap h5">
-                                            <span class="price-new">$1280</span>
-                                            <del class="price-old">$1980</del>
-                                        </div>
-                                        <!-- price-wrap.// -->
-                                    </div>
-                                    <!-- bottom-wrap.// -->
-                                </figure>
-                            </div>
-                            <!-- col // -->
-                        </div>
-                        <!-- row.// -->
-
+        <div class="root-home ">
+            <div class="container-fluid content-catalogo">
+                <div class="row">
+                    <div class="col-12">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">Inicio</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="#">Colegio 1</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Uniformes</li>
+                            </ol>
+                        </nav>
                     </div>
-                    <%- include('fragments/footer_part') %>
+                    <!--
+                    <div class="col-12">
+                        <img src="img/colegios/foto_colegio.PNG" class="img-colegio" alt="">
+                    </div>
+                    -->
                 </div>
             </div>
-    </div>
 
-    <%- include('fragments/footer') %>
+            <div class="container">
+                <div id="content_cards_products" class="row">
+
+                </div>
+            </div>
+
+            <template id="template_card_product">
+                <div class="col-md-4">
+                    <figure class="card card-product">
+                        <div class="img-wrap">
+                            <img src="/img/uniformes/confecciones-margarita-del-villar-universitario-el-salvador-10.jpg">
+                        </div>
+                        <figcaption class="info-card">
+                            <h4 class="title"></h4>
+                            <p class="desc"></p>
+                        </figcaption>
+                        <div class="bottom-wrap">
+                            <div class="price-wrap"></div>
+                        </div>
+                        <div class="btn_card_product">
+                            <a href="" class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#exampleModalCenter">Agregar</a>
+                        </div>
+                    </figure>
+                </div>
+            </template>
+            <%- include('fragments/footer_part') %>
+        </div>
+    </div>
+</div>
+
+<%- include('fragments/footer') %>
+<script src="/js/catalogo.js"></script>

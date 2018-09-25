@@ -402,3 +402,19 @@ body {
 .forgot-password{
     min-height: 500px;
 }
+
+.card-product .info-card {
+    padding: 0 15px 0 15px;
+}
+
+.card-product .img-wrap{
+    padding: 15px 0;
+}
+
+.bottom-wrap{
+    min-height: 120px;
+}
+
+.btn_card_product{
+    padding: 10px;
+}
