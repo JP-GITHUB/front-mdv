@@ -40,4 +40,8 @@ app.use('/usuarios', function(req, res) {
     res.render('usuarios');
 });
 
+app.use('/productos', function(req, res) {
+    res.render('productos');
+});
+
 module.exports = app;
