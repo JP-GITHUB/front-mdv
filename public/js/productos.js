@@ -1,4 +1,24 @@
+var tallaContent = '';
+
 $(document).ready(() => {
+/*
+    var apiUrl = 'http://localhost:3001';
+    $.ajax({
+        url: apiUrl + "/tallas",
+        method: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            let tallas = data.data;
+                    for (item in tallas) {
+                        tallaContent += '<option value="' + tallas[item].id + '">' + tallas[item].descripcion + '</option>';
+                    };
+                    $("#cbx_newTalla").html(tallaContent);
+        },
+        error: function (err) {
+            alert("no se puede establecer conexión con el servicio");
+        }
+    });
+*/
 
     $("#btn_save").click(function () {
         objProductos.editProducto();
@@ -19,6 +39,7 @@ $(document).ready(() => {
             let table_instance = $('#table_productos').DataTable();
             let id = $("#hidd_id").val();
             let nombre = $("#txt_nombre").val();
+            let descripcion = $("#txt_descripcion").val();
 
             $.ajax({
                 url: this.apiUrl + "/productos",
@@ -29,7 +50,8 @@ $(document).ready(() => {
                 },
                 data: {
                     id: id,
-                    nombre: nombre
+                    nombre: nombre,
+                    descripcion: descripcion
                 },
                 success: function (data) {
                     table_instance.ajax.reload();
@@ -44,13 +66,25 @@ $(document).ready(() => {
         newProducto: function() {
             let table_instance = $('#table_productos').DataTable();
             let nombre = $("#txt_newNombre").val();
+            let descripcion = $("#txt_newDescripcion").val();
+            console.log(nombre, descripcion);
+
+            /*
+            let talla = $("#cbx_newTalla").val();
+            let precio = $("#txt_newPrecio").val();
+            let cantidad = $("#txt_newCantidad").val();
+            */
 
             $.ajax({
-                url: this.apiUrl + "/producto",
+                url: this.apiUrl + "/productos",
+                headers: {
+                    authorization: this.storage_data.token
+                },
                 method: 'POST',
                 dataType: 'json',
                 data: {
-                    nombre: nombre
+                    nombre: nombre,
+                    descripcion: descripcion
                 },
                 success: function (data) {
                     table_instance.ajax.reload();
@@ -62,10 +96,10 @@ $(document).ready(() => {
             
         },
 
-        deletePerfil: function(){
+        deleteProducto: function(){
             let table_instance = $('#table_productos').DataTable();
             let id = $("#hidd_id").val();
-
+            console.log(id);
             $.ajax({
                 url: this.apiUrl + "/productos",
                 method: 'DELETE',
@@ -94,9 +128,6 @@ $(document).ready(() => {
                     { "data": "id" },
                     { "data": "nombre" },
                     { "data": "descripcion" },
-                    { "data": "talla" },
-                    { "data": "precio" },
-                    { "data": "cantidad" },
                     { "data": "estado" },
                     {
                         mRender: function (data, type, row) {
@@ -104,7 +135,7 @@ $(document).ready(() => {
                             '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Editar</button>';
                             linkEdit = linkEdit.replace("-1", row.ID);
 
-                            var linkDelete = '<button type="button" id="dtBtonoRechazar" class="btn btn-danger" data-id="' + row.id + '"data-toggle="modal" data-target="#delete_modal">'+
+                            var linkDelete = '<button type="button" id="btn_delete" class="btn btn-danger" data-id="' + row.id + '"data-toggle="modal" data-target="#delete_modal">'+
                             '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Eliminar</button>';
                             linkDelete = linkDelete.replace("-1", row.ID);
 
@@ -119,6 +150,7 @@ $(document).ready(() => {
                 let data = table.row(this).data();
                 $("#hidd_id").val(data.id);
                 $("#txt_nombre").val(data.nombre);
+                $("#txt_descripcion").val(data.descripcion);
                 $("#cbx_estado").val((data.estado) ? 1 : 2);
             });
         },
@@ -129,11 +161,11 @@ $(document).ready(() => {
             }
 
             this.storage_data = JSON.parse(localStorage.getItem("currentUser")); 
-            objPerfiles.init_datatables();
+            objProductos.init_datatables();
         },
     };
 
-    objPerfiles.init();
+    objProductos.init();
 
 });
 
@@ -159,6 +191,6 @@ function FormatoFecha(fecha) {
     if (hora < 10) { hora = '0' + hora }
     if (minuto < 10) { minuto = '0' + minuto }
     if (segundo < 10) { segundo = '0' + segundo }
-    var formatoFecha = "<div> Fecha: " + dia + "-" + mes + "-" + año + " </div><div> Hora &nbsp: " + hora + ":" + minuto + ":" + segundo + "</div>";
+    let formatoFecha = "<div> Fecha: " + dia + "-" + mes + "-" + año + " </div><div> Hora &nbsp: " + hora + ":" + minuto + ":" + segundo + "</div>";
     return formatoFecha;
 };

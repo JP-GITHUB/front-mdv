@@ -22,9 +22,11 @@
                                             <th>ID</th>
                                             <th>NOMBRE</th>
                                             <th>DESCRIPCIÓN</th>
+                                            <!--
                                             <th>TALLA</th>
                                             <th>PRECIO</th>
                                             <th>CANTIDAD</th>
+                                            -->
                                             <th>ESTADO</th>
                                             <th></th>
                                         </tr>
@@ -51,9 +53,9 @@
                                                     <label for="Nombre">Descripción</label>
                                                     <input type="text" class="form-control" id="txt_descripcion" placeholder="Descripción">
                                                 </div>
+                                                <!--
                                                 <div class="form-group">
-                                                    <label for="Nombre">Talla</label>
-                                                    <input type="text" class="form-control" id="txt_talla" placeholder="Talla">
+                                                    <select name="cbx_tallas" id="cbx_tallas" class="form-control"></select>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Nombre">Precio</label>
@@ -63,6 +65,7 @@
                                                     <label for="Nombre">Cantidad</label>
                                                     <input type="number" class="form-control" id="num_cantidad3">
                                                 </div>
+                                                -->
                                             </form>
                                         </div>
                                         <div class="modal-footer">
@@ -87,6 +90,23 @@
                                                     <label for="Nombre">Nombre</label>
                                                     <input type="text" class="form-control" id="txt_newNombre" placeholder="Nombre">
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for="Nombre">Descripción</label>
+                                                    <input type="text" class="form-control" id="txt_newDescripcion" placeholder="Nombre">
+                                                </div>
+                                                <!--
+                                                <div class="form-group">
+                                                    <select name="cbx_newTalla" id="cbx_newTalla" class="form-control"></select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Nombre">Precio</label>
+                                                    <input type="text" class="form-control" id="txt_newPrecio" placeholder="Nombre">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Nombre">Cantidad</label>
+                                                    <input type="text" class="form-control" id="txt_newCantidad" placeholder="Nombre">
+                                                </div>
+                                                -->
                                             </form>
                                         </div>
                                         <div class="modal-footer">
@@ -126,4 +146,4 @@
     <%- include('fragments/footer') %>
         <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
         <script src="js/auth.js"></script>
-        <script src="js/prodcutos.js"></script>
+        <script src="js/productos.js"></script>
