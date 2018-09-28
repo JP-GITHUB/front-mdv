@@ -8,7 +8,7 @@ body {
     border-radius: 0;
 }
 
-.row{
+.row {
     margin-bottom: 10px;
 }
 
@@ -150,6 +150,10 @@ ul.nav a:hover {
 
 /* CSS Catalogo */
 
+.content-catalogo {
+    min-height: 320px;
+}
+
 .content-catalogo aside {
     width: 350px;
     height: 500px;
@@ -179,6 +183,41 @@ ul.nav a:hover {
     position: absolute;
     top: 10%;
     right: 0%;
+}
+
+.root-catalogo .breadcrumb {
+    background-color: unset;
+}
+
+.content-catalogo card {
+    border-radius: 0;
+}
+
+.card-product .info-card {
+    padding: 10px 0 5px 0;
+}
+
+.card-product .img-wrap {
+    background-color: #949494;
+    border-radius: 0;
+}
+
+.btn_card_product {
+    padding: 2px;
+}
+
+.content-button-card a {
+    margin: 0 2px;
+}
+
+.collapse .card {
+    border: 0;
+    border-radius: 0;
+    outline: none;
+}
+
+.collapse .card :focus {
+    outline: none;
 }
 
 @media (max-width: 768px) {
@@ -253,9 +292,7 @@ body {
     margin-right: -500px;
 }
 
-@media (min-width: 1200px) {
-    
-}
+@media (min-width: 1200px) {}
 
 /* Sidebar Styles */
 
@@ -404,22 +441,6 @@ body {
     float: left;
 }
 
-.forgot-password{
+.forgot-password {
     min-height: 500px;
-}
-
-.card-product .info-card {
-    padding: 0 15px 0 15px;
-}
-
-.card-product .img-wrap{
-    padding: 15px 0;
-}
-
-.bottom-wrap{
-    min-height: 120px;
-}
-
-.btn_card_product{
-    padding: 10px;
 }

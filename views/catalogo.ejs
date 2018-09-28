@@ -12,8 +12,8 @@
             <input type="hidden" id="hidd_id_colegio" value="<%= id %>">
         </template>
 
-        <div class="root-home ">
-            <div class="container-fluid content-catalogo">
+        <div class="root-catalogo">
+            <div class="container content-catalogo">
                 <div class="row">
                     <div class="col-12">
                         <nav aria-label="breadcrumb">
@@ -28,17 +28,12 @@
                             </ol>
                         </nav>
                     </div>
-                    <!--
-                    <div class="col-12">
-                        <img src="img/colegios/foto_colegio.PNG" class="img-colegio" alt="">
+                    <div class="container">
+                        <hr />
+                        <div id="content_cards_products" class="row">
+
+                        </div>
                     </div>
-                    -->
-                </div>
-            </div>
-
-            <div class="container">
-                <div id="content_cards_products" class="row">
-
                 </div>
             </div>
 
@@ -48,19 +43,132 @@
                         <div class="img-wrap">
                             <img src="/img/uniformes/confecciones-margarita-del-villar-universitario-el-salvador-10.jpg">
                         </div>
-                        <figcaption class="info-card">
+                        <figcaption class="info-card text-center">
                             <h4 class="title"></h4>
                             <p class="desc"></p>
                         </figcaption>
-                        <div class="bottom-wrap">
-                            <div class="price-wrap"></div>
-                        </div>
                         <div class="btn_card_product">
-                            <a href="" class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#exampleModalCenter">Agregar</a>
+                            <div class="collapse" id="collapseExample">
+                                <div class="alert alert-light text-center" role="alert">
+                                    <div class="price-wrap"></div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="content-button-card mx-auto">
+                                    <a class="btn btn-sm btn-primary" data-toggle="collapse" href="#collapseExample"
+                                        role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        + Info
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target=".bd-example-modal-lg">ver ficha</a>
+                                    <a href="#" class="btn btn-sm btn-primary float-right btn-express-add"><i class="fas fa-plus-circle"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </figure>
                 </div>
             </template>
+
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                        <div class="card">
+                            <div class="row no-gutters">
+                                <aside class="col-sm-5 border-right">
+                                    <article class="gallery-wrap">
+                                        <div class="img-big-wrap">
+                                            <div> <a href="https://uniforma.cl/547-thickbox_default/blusa-escolar-blanca-clasica.jpg" data-fancybox=""><img src="https://uniforma.cl/547-thickbox_default/blusa-escolar-blanca-clasica.jpg"></a></div>
+                                        </div> <!-- slider-product.// -->
+                                        <div class="img-small-wrap">
+                                            <div class="item-gallery"> <img src="https://uniforma.cl/547-thickbox_default/blusa-escolar-blanca-clasica.jpg"></div>
+                                            <div class="item-gallery"> <img src="https://uniforma.cl/385-cart_default/blusa-escolar-blanca-clasica.jpg"></div>
+                                            <div class="item-gallery"> <img src="https://uniforma.cl/384-cart_default/blusa-escolar-blanca-clasica.jpg"></div>
+                                        </div> <!-- slider-nav.// -->
+                                    </article> <!-- gallery-wrap .end// -->
+                                </aside>
+                                <aside class="col-sm-7">
+                                    <article class="p-5">
+                                        <h3 class="title mb-3">Original Version of Some product name</h3>
+
+                                        <div class="mb-3">
+                                            <var class="price h3 text-warning">
+                                                <span class="currency">US $</span><span class="num">1299</span>
+                                            </var>
+                                            <span>/per kg</span>
+                                        </div> <!-- price-detail-wrap .// -->
+                                        <dl>
+                                            <dt>Description</dt>
+                                            <dd>
+                                                <p>Here goes description consectetur adipisicing elit, sed do eiusmod
+                                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                                                    minim veniam,
+                                                    quis nostrud exercitation ullamco </p>
+                                            </dd>
+                                        </dl>
+                                        <dl class="row">
+                                            <dt class="col-sm-3">Model#</dt>
+                                            <dd class="col-sm-9">12345611</dd>
+
+                                            <dt class="col-sm-3">Color</dt>
+                                            <dd class="col-sm-9">Black and white </dd>
+
+                                            <dt class="col-sm-3">Delivery</dt>
+                                            <dd class="col-sm-9">Russia, USA, and Europe </dd>
+                                        </dl>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <dl class="dlist-inline">
+                                                    <dt>Quantity: </dt>
+                                                    <dd>
+                                                        <select class="form-control form-control-sm" style="width:70px;">
+                                                            <option> 1 </option>
+                                                            <option> 2 </option>
+                                                            <option> 3 </option>
+                                                        </select>
+                                                    </dd>
+                                                </dl> <!-- item-property .// -->
+                                            </div> <!-- col.// -->
+                                            <div class="col-sm-7">
+                                                <dl class="dlist-inline">
+                                                    <dt>Size: </dt>
+                                                    <dd>
+                                                        <label class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                                id="inlineRadio2" value="option2">
+                                                            <span class="form-check-label">SM</span>
+                                                        </label>
+                                                        <label class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                                id="inlineRadio2" value="option2">
+                                                            <span class="form-check-label">MD</span>
+                                                        </label>
+                                                        <label class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                                id="inlineRadio2" value="option2">
+                                                            <span class="form-check-label">XXL</span>
+                                                        </label>
+                                                    </dd>
+                                                </dl> <!-- item-property .// -->
+                                            </div> <!-- col.// -->
+                                        </div> <!-- row.// -->
+                                        <hr>
+                                        <a href="#" class="btn  btn-primary"> Comprar ahora </a>
+                                        <a href="#" class="btn  btn-outline-primary"> 
+                                            <i class="fas fa-shopping-cart"></i> Agregar al Carro
+                                        </a>
+                                    </article> <!-- card-body.// -->
+                                </aside> <!-- col.// -->
+                            </div> <!-- row.// -->
+                        </div> <!-- card.// -->
+
+                    </div>
+                </div>
+            </div>
+
+
             <%- include('fragments/footer_part') %>
         </div>
     </div>

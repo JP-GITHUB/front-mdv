@@ -8,20 +8,30 @@ $(document).ready(() => {
                 method: 'GET',
                 dataType: 'json',
                 success: function (data) {
+                    var content_cards_product = document.querySelector("#content_cards_products");
+                    if(data.obj.length == 0){
+                        var tmp_title = document.createElement('h2');
+                        tmp_title.innerHTML = 'No existen productos para mostrar';
+                        content_cards_product.appendChild(tmp_title);
+                    }
+
                     $.each(data.obj, function (key, val) {
-                        var t = document.querySelector('#template_card_product'),
-                            content_cards_product = document.querySelector("#content_cards_products");
+                        var t = document.querySelector('#template_card_product');
 
                         t.content.querySelector(".title").innerHTML = val.nombre;
                         t.content.querySelector(".desc").innerHTML = val.descripcion;
 
                         $.each(val.TALLAs, function (key2, val2) {
                             var div = document.createElement('div');
-                            div.innerHTML = val2.descripcion + " - $ " + val2.PRODUCTO_TALLA.precio;
+                            div.innerHTML = "Talla: " + val2.descripcion + " | Precio: $ " + val2.PRODUCTO_TALLA.precio;
                             t.content.querySelector('.price-wrap').appendChild(div);
                         });
 
                         content_cards_product.appendChild(document.importNode(t.content, true))
+                    });
+
+                    $(".btn-express-add").on('click', function(){
+                        $.alert({ title: 'Agregando!', content: 'En un futuro cercano ... agregara instantaneamente al carro.' });
                     });
                 },
                 error: function (err) {
