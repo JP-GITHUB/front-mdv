@@ -1,24 +1,4 @@
-var colegioContent = '';
-var colegios = "";
-
-var apiUrl = 'http://localhost:3001';
-$.ajax({
-    url: apiUrl + "/schools",
-    method: 'GET',
-    dataType: 'json',
-    success: function (data) {
-        colegios = data.data;
-        for (item in colegios) {
-            colegioContent += '<option value="' + colegios[item].id + '">' + colegios[item].nombre + '</option>';
-        };
-        $("#cbx_newColegio").html(colegioContent);
-        $("#cbx_colegios").html(colegioContent);
-    },
-    error: function (err) {
-        alert("no se puede establecer conexión con el servicio");
-    }
-});
-
+var tallaContent = '';
 
 $(document).ready(() => {
 
@@ -42,7 +22,6 @@ $(document).ready(() => {
             let id = $("#hidd_id").val();
             let nombre = $("#txt_nombre").val();
             let descripcion = $("#txt_descripcion").val();
-            let colegio_id = $("#cbx_colegios").val();
 
             $.ajax({
                 url: this.apiUrl + "/productos",
@@ -54,8 +33,7 @@ $(document).ready(() => {
                 data: {
                     id: id,
                     nombre: nombre,
-                    descripcion: descripcion,
-                    colegio_id: colegio_id
+                    descripcion: descripcion
                 },
                 success: function (data) {
                     table_instance.ajax.reload();
@@ -67,11 +45,11 @@ $(document).ready(() => {
 
         },
 
-        newProducto: function () {
+        newProducto: function() {
             let table_instance = $('#table_productos').DataTable();
             let nombre = $("#txt_newNombre").val();
             let descripcion = $("#txt_newDescripcion").val();
-            let colegio_id = $("#cbx_newColegio").val();
+            console.log(nombre, descripcion);
 
             /*
             let talla = $("#cbx_newTalla").val();
@@ -88,8 +66,7 @@ $(document).ready(() => {
                 dataType: 'json',
                 data: {
                     nombre: nombre,
-                    descripcion: descripcion,
-                    colegio_id: colegio_id
+                    descripcion: descripcion
                 },
                 success: function (data) {
                     table_instance.ajax.reload();
@@ -98,12 +75,13 @@ $(document).ready(() => {
 
                 }
             });
-
+            
         },
 
-        deleteProducto: function () {
+        deleteProducto: function(){
             let table_instance = $('#table_productos').DataTable();
             let id = $("#hidd_id").val();
+            console.log(id);
             $.ajax({
                 url: this.apiUrl + "/productos",
                 method: 'DELETE',
@@ -132,25 +110,15 @@ $(document).ready(() => {
                     { "data": "id" },
                     { "data": "nombre" },
                     { "data": "descripcion" },
-                    { "data": "colegio_id" , "visible": false,},
-                    {
-                        mRender: function (data, type, row) {
-                            var linkSchool = '<td>' + row.COLEGIO.nombre + '</td>';
-                            linkSchool = linkSchool.replace("-1", row.ID);
-
-                            return linkSchool;
-                        }
-                    },
                     { "data": "estado" },
                     {
                         mRender: function (data, type, row) {
-
-                            var linkEdit = '<button type="button" class="btn btn-success" data-id="' + row.id + '" data-toggle="modal" data-target="#edit_modal">' +
-                                '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Editar</button>';
+                            var linkEdit = '<button type="button" class="btn btn-success" data-id="' + row.id + '" data-toggle="modal" data-target="#edit_modal">'+
+                            '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Editar</button>';
                             linkEdit = linkEdit.replace("-1", row.ID);
 
-                            var linkDelete = '<button type="button" id="btn_delete" class="btn btn-danger" data-id="' + row.id + '"data-toggle="modal" data-target="#delete_modal">' +
-                                '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Eliminar</button>';
+                            var linkDelete = '<button type="button" id="btn_delete" class="btn btn-danger" data-id="' + row.id + '"data-toggle="modal" data-target="#delete_modal">'+
+                            '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Eliminar</button>';
                             linkDelete = linkDelete.replace("-1", row.ID);
 
                             return linkEdit + " | " + linkDelete;
@@ -162,12 +130,10 @@ $(document).ready(() => {
 
             $('#table_productos tbody').on('click', 'tr', function () {
                 let data = table.row(this).data();
-                console.log(data);
                 $("#hidd_id").val(data.id);
                 $("#txt_nombre").val(data.nombre);
                 $("#txt_descripcion").val(data.descripcion);
                 $("#cbx_estado").val((data.estado) ? 1 : 2);
-                $("#cbx_colegios").val(data.colegio_id);
             });
         },
 
@@ -176,7 +142,7 @@ $(document).ready(() => {
                 window.location.href = "/";
             }
 
-            this.storage_data = JSON.parse(localStorage.getItem("currentUser"));
+            this.storage_data = JSON.parse(localStorage.getItem("currentUser")); 
             objProductos.init_datatables();
         },
     };
