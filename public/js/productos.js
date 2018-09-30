@@ -81,9 +81,6 @@ $(document).ready(() => {
 
             $.ajax({
                 url: this.apiUrl + "/productos",
-                headers: {
-                    authorization: this.storage_data.token
-                },
                 method: 'POST',
                 dataType: 'json',
                 data: {
