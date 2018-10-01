@@ -1,189 +1,186 @@
 <%- include('fragments/header') %>
 
-    <div id="wrapper">
-        <%- include('fragments/sidebar') %>
-            <div id="page-content-wrapper">
-                <header>
-                    <%- include('fragments/navbar') %>
-                </header>
+<div id="wrapper">
+    <%- include('fragments/sidebar') %>
+    <div id="page-content-wrapper">
+        <header>
+            <%- include('fragments/navbar') %>
+        </header>
 
-                <div class="container-fluid content-checkout">
-                    <div class="container">
-                        <div class="py-5 text-center">
-                            <img class="d-block mx-auto mb-4" src="assets/img/logo.png" alt="" width="72" height="72">
-                            <h2>Checkout MDV Express</h2>
-                        </div>
+        <div class="container-fluid content-checkout">
+            <div class="container">
+                <div class="py-5 text-center">
+                    <img class="d-block mx-auto mb-4" src="assets/img/logo.png" alt="" width="72" height="72">
+                    <h2>Checkout MDV Express</h2>
+                </div>
 
-                        <div class="row">
-                            <div class="col-md-4 order-md-2 mb-4">
-                                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="text-muted">Carro de compras</span>
-                                    <span class="badge badge-secondary badge-pill">3</span>
-                                </h4>
-                                <ul class="list-group mb-3">
-                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                        <div>
-                                            <h6 class="my-0">Buzo Manuel de salas</h6>
-                                            <small class="text-muted">Hombre - Talla 16</small>
-                                        </div>
-                                        <span class="text-muted">$16.990</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                        <div>
-                                            <h6 class="my-0">Polera blanca &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
-                                            <small class="text-muted">Mujer - Talla S</small>
-                                        </div>
-                                        <span class="text-muted">$6.990</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                        <div>
-                                            <h6 class="my-0">Pantalon Plomo &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
-                                            <small class="text-muted">Hombre - Talla 16</small>
-                                        </div>
-                                        <span class="text-muted">$7.990</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        <span>Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                        <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $31.970</strong>
-                                    </li>
-                                </ul>
+                <div class="row">
+                    <div class="col-md-4 order-md-2 mb-4">
+                        <h4 class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-muted">Carro de compras</span>
+                            <span class="badge badge-secondary badge-pill"></span>
+                        </h4>
+                        <ul class="list-group mb-3">
+                            <div class="content-li-products">
+
                             </div>
-                            <div class="col-md-8 order-md-1">
-                                <h4 class="mb-3">Datos de entrega</h4>
-                                <form class="needs-validation" novalidate="">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="firstName">Nombre de quien retira</label>
-                                            <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
-                                            <div class="invalid-feedback">
-                                                Es necesario especificar el nombre de quien retira
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="lastName">Numero de Contacto</label>
-                                            <input type="number" class="form-control" id="lastName" placeholder="" value="" required="">
-                                            <div class="invalid-feedback">
-                                                Es necesario especificar un contacto
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr class="mb-4">
-                                    <h4 class="mb-3">Medio de pago</h4>
-
-                                    <hr class="mb-4">
-                                    <button class="btn btn-secondary btn-lg btn-block" type="submit">
-                                        <img src="https://s3.amazonaws.com/static.khipu.com/buttons/2015/163x127-transparent.png">
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-7"><span>Total</span></div>
+                                    <div class="col-5"><span id="total_checkout"></span></div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-
-                    <div class="root-footer bg-dark text-white">
-                        <div class="row justify-content-center nopadding">
-                            <!-- Footer -->
-                            <footer class="page-footer font-small blue pt-4">
-
-                                <!-- Footer Links -->
-                                <div class="container-fluid text-center text-md-left">
-
-                                    <!-- Grid row -->
-                                    <div class="row">
-                                        <!-- Grid column -->
-                                        <div class="col-md-3 mb-md-0 mb-3">
-
-                                            <!-- Links -->
-                                            <h5>Información</h5>
-
-                                            <ul class="list-unstyled">
-                                                <li>
-                                                    Margarita del Villar Confecciones
-                                                </li>
-                                                <li>Celular:</li>
-                                                <li>+56 9 9165 2184</li>
-                                                <li>+56 9 9222 1890</li>
-                                                <li>E-mail:</li>
-                                                <li>m.caceres@margaritadelvillar.cl</li>
-                                            </ul>
-
-                                        </div>
-                                        <!-- Grid column -->
-
-                                        <!-- Grid column -->
-                                        <div class="col-md-3 mb-md-0 mb-3">
-
-                                            <!-- Links -->
-                                            <h5>Sucursal Ñuñoa</h5>
-
-                                            <ul class="list-unstyled">
-                                                <li>Teléfono:</li>
-                                                <li>+56 2 2266 1785</li>
-                                                <li>
-                                                    Pdte. Battle y Ordoñez 4489, Ñuñoa
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                        <!-- Grid column -->
-
-                                        <!-- Grid column -->
-                                        <div class="col-md-3 mb-md-0 mb-3">
-
-                                            <!-- Links -->
-                                            <h5>Sucursal Stgo. Centro</h5>
-
-                                            <ul class="list-unstyled">
-                                                <li>Teléfonos:</li>
-                                                <li>+56 2 2697 4802</li>
-                                                <li>+56 9 9222 1890</li>
-                                                <li>Pasaje Allende 588, Stgo. Centro</li>
-                                            </ul>
-
-                                        </div>
-                                        <!-- Grid column -->
-
-                                        <!-- Grid column -->
-                                        <div class="col-md-3 mb-md-0 mb-3">
-
-                                            <!-- Links -->
-                                            <h5>Links de Interés</h5>
-
-                                            <ul class="list-unstyled">
-                                                <li>
-                                                    <a href="#!">Mapa de ubicación</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#!">Mapa de sitio</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#!">Más info en mercantil.com</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#!">Más info en amarillas.com</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- Grid column -->
-
+                    <div class="col-md-8 order-md-1">
+                        <h4 class="mb-3">Datos de entrega</h4>
+                        <form class="needs-validation" novalidate="">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName">Nombre de quien retira</label>
+                                    <input type="text" id="txt_nombre_retiro" class="form-control" id="firstName" placeholder="" value=""
+                                        required="">
+                                    <div class="invalid-feedback">
+                                        Es necesario especificar el nombre de quien retira
                                     </div>
-                                    <!-- Grid row -->
-
                                 </div>
-                                <!-- Footer Links -->
-
-                                <!-- Copyright -->
-                                <div class="dropdown-divider"></div>
-                                <div class="footer-copyright text-center py-3">© 2018 Copyright:
-                                    <a href="#"> A-Spec</a>
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName">Numero de Contacto</label>
+                                    <input type="number" class="form-control" id="lastName" placeholder="" value=""
+                                        required="">
+                                    <div class="invalid-feedback">
+                                        Es necesario especificar un contacto
+                                    </div>
                                 </div>
-                                <!-- Copyright -->
+                            </div>
+                            <hr class="mb-4">
+                            <h4 class="mb-3">Medio de pago</h4>
 
-                            </footer>
-                            <!-- Footer -->
-                        </div>
+                            <hr class="mb-4">
+                            <button id="btn-sale" class="btn btn-secondary btn-lg btn-block" type="submit">
+                                <img src="https://s3.amazonaws.com/static.khipu.com/buttons/2015/163x127-transparent.png">
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
-    </div>
 
-    <%- include('fragments/footer') %>
+            <template id="template-li-product">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0 product-name"></h6>
+                        <small class="text-muted product-detail"></small>
+                    </div>
+                    <span class="text-muted product-price">$</span>
+                </li>
+            </template>
+
+            <div class="root-footer bg-dark text-white">
+                <div class="row justify-content-center nopadding">
+                    <!-- Footer -->
+                    <footer class="page-footer font-small blue pt-4">
+
+                        <!-- Footer Links -->
+                        <div class="container-fluid text-center text-md-left">
+
+                            <!-- Grid row -->
+                            <div class="row">
+                                <!-- Grid column -->
+                                <div class="col-md-3 mb-md-0 mb-3">
+
+                                    <!-- Links -->
+                                    <h5>Información</h5>
+
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            Margarita del Villar Confecciones
+                                        </li>
+                                        <li>Celular:</li>
+                                        <li>+56 9 9165 2184</li>
+                                        <li>+56 9 9222 1890</li>
+                                        <li>E-mail:</li>
+                                        <li>m.caceres@margaritadelvillar.cl</li>
+                                    </ul>
+
+                                </div>
+                                <!-- Grid column -->
+
+                                <!-- Grid column -->
+                                <div class="col-md-3 mb-md-0 mb-3">
+
+                                    <!-- Links -->
+                                    <h5>Sucursal Ñuñoa</h5>
+
+                                    <ul class="list-unstyled">
+                                        <li>Teléfono:</li>
+                                        <li>+56 2 2266 1785</li>
+                                        <li>
+                                            Pdte. Battle y Ordoñez 4489, Ñuñoa
+                                        </li>
+                                    </ul>
+
+                                </div>
+                                <!-- Grid column -->
+
+                                <!-- Grid column -->
+                                <div class="col-md-3 mb-md-0 mb-3">
+
+                                    <!-- Links -->
+                                    <h5>Sucursal Stgo. Centro</h5>
+
+                                    <ul class="list-unstyled">
+                                        <li>Teléfonos:</li>
+                                        <li>+56 2 2697 4802</li>
+                                        <li>+56 9 9222 1890</li>
+                                        <li>Pasaje Allende 588, Stgo. Centro</li>
+                                    </ul>
+
+                                </div>
+                                <!-- Grid column -->
+
+                                <!-- Grid column -->
+                                <div class="col-md-3 mb-md-0 mb-3">
+
+                                    <!-- Links -->
+                                    <h5>Links de Interés</h5>
+
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a href="#!">Mapa de ubicación</a>
+                                        </li>
+                                        <li>
+                                            <a href="#!">Mapa de sitio</a>
+                                        </li>
+                                        <li>
+                                            <a href="#!">Más info en mercantil.com</a>
+                                        </li>
+                                        <li>
+                                            <a href="#!">Más info en amarillas.com</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Grid column -->
+
+                            </div>
+                            <!-- Grid row -->
+
+                        </div>
+                        <!-- Footer Links -->
+
+                        <!-- Copyright -->
+                        <div class="dropdown-divider"></div>
+                        <div class="footer-copyright text-center py-3">© 2018 Copyright:
+                            <a href="#"> A-Spec</a>
+                        </div>
+                        <!-- Copyright -->
+
+                    </footer>
+                    <!-- Footer -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('fragments/footer') %>
+<script src="/js/checkout.js"></script>

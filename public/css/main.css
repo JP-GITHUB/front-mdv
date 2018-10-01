@@ -164,17 +164,21 @@ ul.nav a:hover {
     width: 100%;
 }
 
-.modal-header {
+.modal__product_sheet .modal-header {
     padding: 0.4rem 25px;
 }
 
-.modal-dialog {
-    max-width: 80%;
+.modal__product_sheet .modal-dialog {
+    max-width: 55%;
 }
 
-.modal .row {
+.modal__product_sheet .modal .row {
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.modal__product_sheet .gallery-wrap .img-big-wrap {
+    margin-top: 10px;
 }
 
 .aside-carro {

@@ -62,7 +62,7 @@
                                         + Info
                                     </a>
                                     <a href="#" id="btn-info-product" class="btn btn-sm btn-primary float-right"
-                                        data-toggle="modal" data-target=".bd-example-modal-lg">ver ficha</a>
+                                        data-toggle="modal" data-target=".modal__product_sheet">ver ficha</a>
                                     <a href="#" class="btn btn-sm btn-primary float-right btn-express-add"><i class="fas fa-plus-circle"></i></a>
                                 </div>
                             </div>
@@ -71,9 +71,9 @@
                 </div>
             </template>
 
-            <div class="modal modal__product_sheet fade bd-example-modal-lg" tabindex="-1" role="dialog"
+            <div class="modal modal__product_sheet fade" tabindex="-1" role="dialog"
                 aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
+                <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="card">
                             <div class="row no-gutters">
@@ -133,8 +133,8 @@
                                             </var>
                                         </div>
                                         <hr>
-                                        <a href="#" class="btn  btn-primary"> Comprar ahora </a>
-                                        <a href="#" class="btn  btn-outline-primary">
+                                        <a href="/checkout" id="btn_express_buy" class="btn btn-primary"> Comprar ahora </a>
+                                        <a href="#" id="btn_add_cart" class="btn btn-outline-primary">
                                             <i class="fas fa-shopping-cart"></i> Agregar al Carro
                                         </a>
                                     </article> <!-- card-body.// -->

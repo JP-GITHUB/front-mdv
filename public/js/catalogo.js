@@ -75,6 +75,7 @@ $(document).ready(() => {
                 method: 'GET',
                 dataType: 'JSON',
                 success: function (data) {
+                    $(".row-sizes dd").html('');
                     $("#modal__product_title").html(data.obj.nombre);
                     $("#modal__product_desc").html(data.obj.descripcion);
 
@@ -84,7 +85,6 @@ $(document).ready(() => {
                         temp_html.find('.input-radio-size').attr("value", val2.id);
                         temp_html.find('.input-radio-size').attr("data-pricing", val2.PRODUCTO_TALLA.precio);
                         temp_html.find('.label-price').text(val2.PRODUCTO_TALLA.precio);
-
                         $(".row-sizes dd").append(temp_html);
                     });
 
@@ -100,6 +100,21 @@ $(document).ready(() => {
                         let quantity = $("#txt_quantity").val();
                         objCategoria.setTotal(price, quantity);
                     });
+
+                    $("#btn_add_cart").on('click', function () {
+                        $.alert({ title: 'Agregando!', content: 'En un futuro cercano ... agregara producto al carro.' });
+                    });
+
+                    $("#btn_express_buy").on('click', function () {
+                        let product_id = $(".hdd_id_producto").val();
+                        let product_name = $("#modal__product_title").html();
+                        let size_id = $('input:radio[name=radio-size]:checked').val();
+                        let quantity = $("#txt_quantity").val();
+                        let price = $('input:radio[name=radio-size]:checked').attr("data-pricing");
+                        $("#total_span").html(total);
+
+                        objCategoria.oneProductSale(product_id, product_name, size_id, quantity, price);
+                    });
                 },
                 error: function (err) {
 
@@ -107,7 +122,22 @@ $(document).ready(() => {
             });
         },
 
-        setTotal(price, quantity){
+        oneProductSale(product_id, product_name, size_id, quantity, price) {
+            let currentInfoUser = JSON.parse(localStorage.getItem("currentUser"));
+            currentInfoUser.products = [
+                {
+                    product_id: product_id,
+                    product_name: product_name,
+                    size_id: size_id,
+                    quantity: quantity,
+                    price: price
+                }
+            ];
+
+            localStorage.setItem("currentUser", JSON.stringify(currentInfoUser));
+        },
+
+        setTotal(price, quantity) {
             let total = price * quantity;
             $("#total_span").html(total);
         },
