@@ -1,39 +1,72 @@
-var tallaContent = '';
+
+var apiUrl = 'http://localhost:3001';
+$.ajax({
+    url: apiUrl + "/productos",
+    method: 'GET',
+    dataType: 'json',
+    success: function (data) {
+        var productoContent = '';
+        productos = data.data;
+        for (item in productos) {
+            productoContent += '<option value="' + productos[item].id + '">' + productos[item].nombre +'('+productos[item].COLEGIO.nombre+')'+ '</option>';
+        };
+        $("#cbx_newProducto").html(productoContent);
+    },
+    error: function (err) {
+        alert("no se puede establecer conexión con el servicio");
+    }
+});
+
+$.ajax({
+    url: apiUrl + "/tallas",
+    method: 'GET',
+    dataType: 'json',
+    success: function (data) {
+        var tallaContent = '';
+        tallas = data.data;
+        for (item in tallas) {
+            tallaContent += '<option value="' + tallas[item].id + '">' + tallas[item].descripcion +'</option>';
+        };
+        $("#cbx_newTalla").html(tallaContent);
+    },
+    error: function (err) {
+        alert("no se puede establecer conexión con el servicio");
+    }
+});
+
 
 $(document).ready(() => {
 
     $("#btn_save").click(function () {
-        objProductos.editProducto();
+        objExistencias.editExistencia();
     });
 
     $("#btn_new").click(function () {
-        objProductos.newProducto();
+        objExistencias.newExistencia();
     });
 
-    $("#btn_delete").click(function () {
-        objProductos.deleteProducto();
-    });
-
-    var objProductos = {
+    var objExistencias = {
         apiUrl: 'http://localhost:3001',
         storage_data: null,
-        editProducto: function () {
+        editExistencia: function () {
             let table_instance = $('#table_productos').DataTable();
-            let id = $("#hidd_id").val();
-            let nombre = $("#txt_nombre").val();
-            let descripcion = $("#txt_descripcion").val();
+            let precio = $("#txt_precio").val();
+            let cantidad = $("#txt_cantidad").val();
+            let producto_id = $("#hidd_id_p").val();
+            let talla_id = $("#hidd_id_t").val();
 
             $.ajax({
-                url: this.apiUrl + "/productos",
+                url: this.apiUrl + "/existencias",
                 method: 'PUT',
                 dataType: 'json',
                 headers: {
                     authorization: this.storage_data.token
                 },
                 data: {
-                    id: id,
-                    nombre: nombre,
-                    descripcion: descripcion
+                    precio: precio,
+                    cantidad: cantidad,
+                    producto_id: producto_id,
+                    talla_id: talla_id
                 },
                 success: function (data) {
                     table_instance.ajax.reload();
@@ -45,28 +78,22 @@ $(document).ready(() => {
 
         },
 
-        newProducto: function() {
+        newExistencia: function () {
             let table_instance = $('#table_productos').DataTable();
-            let nombre = $("#txt_newNombre").val();
-            let descripcion = $("#txt_newDescripcion").val();
-            console.log(nombre, descripcion);
-
-            /*
-            let talla = $("#cbx_newTalla").val();
             let precio = $("#txt_newPrecio").val();
             let cantidad = $("#txt_newCantidad").val();
-            */
+            let producto_id = $("#cbx_newProducto").val();
+            let talla_id = $("#cbx_newTalla").val();
 
             $.ajax({
-                url: this.apiUrl + "/productos",
-                headers: {
-                    authorization: this.storage_data.token
-                },
+                url: this.apiUrl + "/existencias",
                 method: 'POST',
                 dataType: 'json',
                 data: {
-                    nombre: nombre,
-                    descripcion: descripcion
+                    precio: precio,
+                    cantidad: cantidad,
+                    producto_id: producto_id,
+                    talla_id: talla_id
                 },
                 success: function (data) {
                     table_instance.ajax.reload();
@@ -75,65 +102,56 @@ $(document).ready(() => {
 
                 }
             });
-            
-        },
 
-        deleteProducto: function(){
-            let table_instance = $('#table_productos').DataTable();
-            let id = $("#hidd_id").val();
-            console.log(id);
-            $.ajax({
-                url: this.apiUrl + "/productos",
-                method: 'DELETE',
-                dataType: 'json',
-                data: {
-                    id: id
-                },
-                success: function (data) {
-                    table_instance.ajax.reload();
-                },
-                error: function (err) {
-
-                }
-            });
         },
 
         init_datatables: function () {
-            let table = $('#table_productos').DataTable({
+            let table = $('#table_existencias').DataTable({
                 "ajax": {
-                    url: this.apiUrl + '/productos',
+                    url: this.apiUrl + '/existencias',
                     headers: {
                         authorization: this.storage_data.token
                     }
                 },
                 "columns": [
-                    { "data": "id" },
-                    { "data": "nombre" },
-                    { "data": "descripcion" },
-                    { "data": "estado" },
                     {
                         mRender: function (data, type, row) {
-                            var linkEdit = '<button type="button" class="btn btn-success" data-id="' + row.id + '" data-toggle="modal" data-target="#edit_modal">'+
-                            '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Editar</button>';
+                            var linkProducto = '<td>' + row.PRODUCTO.nombre +'('+row.PRODUCTO.COLEGIO.nombre+')'+ '</td>';
+                            linkProducto = linkProducto.replace("-1", row.ID);
+
+                            return linkProducto;
+                        }
+                    },
+                    {
+                        mRender: function (data, type, row) {
+                            var linkTalla = '<td>' + row.TALLA.descripcion + '</td>';
+                            linkTalla = linkTalla.replace("-1", row.ID);
+
+                            return linkTalla;
+                        }
+                    },
+                    { "data": "precio" },
+                    { "data": "cantidad" },
+                    {
+                        mRender: function (data, type, row) {
+
+                            var linkEdit = '<button type="button" class="btn btn-success" data-id="' + row.id + '" data-toggle="modal" data-target="#edit_modal">' +
+                                '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Editar</button>';
                             linkEdit = linkEdit.replace("-1", row.ID);
 
-                            var linkDelete = '<button type="button" id="btn_delete" class="btn btn-danger" data-id="' + row.id + '"data-toggle="modal" data-target="#delete_modal">'+
-                            '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Eliminar</button>';
-                            linkDelete = linkDelete.replace("-1", row.ID);
-
-                            return linkEdit + " | " + linkDelete;
+                            return linkEdit
                         }
                     }
                 ],
                 "responsive": true
             });
 
-            $('#table_productos tbody').on('click', 'tr', function () {
+            $('#table_existencias tbody').on('click', 'tr', function () {
                 let data = table.row(this).data();
-                $("#hidd_id").val(data.id);
-                $("#txt_nombre").val(data.nombre);
-                $("#txt_descripcion").val(data.descripcion);
-                $("#cbx_estado").val((data.estado) ? 1 : 2);
+                $("#hidd_id_p").val(data.producto_id);
+                $("#hidd_id_t").val(data.talla_id);
+                $("#txt_precio").val(data.precio);
+                $("#txt_cantidad").val(data.cantidad);
             });
         },
 
@@ -142,12 +160,12 @@ $(document).ready(() => {
                 window.location.href = "/";
             }
 
-            this.storage_data = JSON.parse(localStorage.getItem("currentUser")); 
-            objProductos.init_datatables();
+            this.storage_data = JSON.parse(localStorage.getItem("currentUser"));
+            objExistencias.init_datatables();
         },
     };
 
-    objProductos.init();
+    objExistencias.init();
 
 });
 

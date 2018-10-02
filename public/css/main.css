@@ -441,6 +441,11 @@ body {
     margin-bottom: 60px;
 }
 
+.content_table_existencias {
+    height: 450px;
+    margin-bottom: 60px;
+}
+
 .toolbar {
     float: left;
 }

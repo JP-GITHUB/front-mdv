@@ -19,15 +19,15 @@
                                 <table id="table_existencias" class="table_existencias display" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>NOMBRE</th>
-                                            <th>DESCRIPCIÓN</th>
+                                            <th>PRODUCTO</th>
+                                            <th>TALLA</th>
+                                            <th>PRECIO</th>
+                                            <th>CANTIDAD</th>
                                             <!--
                                             <th>TALLA</th>
                                             <th>PRECIO</th>
                                             <th>CANTIDAD</th>
                                             -->
-                                            <th>ESTADO</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -44,14 +44,15 @@
                                         </div>
                                         <div class="modal-body">
                                             <form>
-                                                <input type="hidden" class="form-control" id="hidd_id">
+                                                <input type="hidden" class="form-control" id="hidd_id_p">
+                                                <input type="hidden" class="form-control" id="hidd_id_t">
                                                 <div class="form-group">
-                                                    <label for="Nombre">Nombre</label>
-                                                    <input type="text" class="form-control" id="txt_nombre" placeholder="Nombre">
+                                                    <label for="Nombre">Precio</label>
+                                                    <input type="number" class="form-control" id="txt_precio" placeholder="Precio">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="Nombre">Descripción</label>
-                                                    <input type="text" class="form-control" id="txt_descripcion" placeholder="Descripción">
+                                                    <label for="Nombre">Cantidad</label>
+                                                    <input type="number" class="form-control" id="txt_cantidad" placeholder="Cantidad">
                                                 </div>
                                                 <!--
                                                 <div class="form-group">
@@ -87,12 +88,18 @@
                                         <div class="modal-body">
                                             <form>
                                                 <div class="form-group">
-                                                    <label for="Nombre">Nombre</label>
-                                                    <input type="text" class="form-control" id="txt_newNombre" placeholder="Nombre">
+                                                    <select id="cbx_newProducto" class="form-control"></select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="Nombre">Descripción</label>
-                                                    <input type="text" class="form-control" id="txt_newDescripcion" placeholder="Nombre">
+                                                    <select id="cbx_newTalla" class="form-control"></select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Nombre">Precio</label>
+                                                    <input type="number" class="form-control" id="txt_newPrecio" placeholder="Precio">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Nombre">Cantidad</label>
+                                                    <input type="number" class="form-control" id="txt_newCantidad" placeholder="Cantidad">
                                                 </div>
                                                 <!--
                                                 <div class="form-group">
