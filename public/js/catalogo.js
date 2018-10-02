@@ -56,9 +56,9 @@ $(document).ready(() => {
                 success: function (obj) {
                     let tmp_menu_school = '';
 
-                    $.each(obj['schools'], function (index, data) {
+                    $.each(obj.data, function (index, item) {
 
-                        tmp_menu_school += '<a class="dropdown-item" href="/catalogo/' + data.id + '">' + data.name + '</a>';
+                        tmp_menu_school += '<a class="dropdown-item" href="/catalogo/' + item.id + '">' + item.nombre + '</a>';
                     });
 
                     $("#nav-app .dropdown-menu").html(tmp_menu_school);
@@ -143,6 +143,7 @@ $(document).ready(() => {
         },
 
         init: function (settings) {
+            objAuth.checkSession();
             var temp = document.getElementById("template_info");
             var id_colegio = $(temp.innerHTML).filter('#hidd_id_colegio').val();
             this.getSchools();

@@ -2,6 +2,27 @@ $(document).ready(() => {
     var objCategoria = {
         apiUrl: 'http://localhost:3001',
 
+        getSchools: function () {
+            $.ajax({
+                url: this.apiUrl + '/schools',
+                method: 'GET',
+                dataType: 'JSON',
+                success: function (obj) {
+                    let tmp_menu_school = '';
+
+                    $.each(obj.data, function (index, item) {
+
+                        tmp_menu_school += '<a class="dropdown-item" href="/catalogo/' + item.id + '">' + item.nombre + '</a>';
+                    });
+
+                    $("#nav-app .dropdown-menu").html(tmp_menu_school);
+                },
+                error: function (err) {
+
+                }
+            });
+        },
+
         loadMemoryProducts: function () {
             let currentInfoUser = JSON.parse(localStorage.getItem("currentUser"));
             let total = 0;
@@ -44,7 +65,10 @@ $(document).ready(() => {
         },
 
         init: function (settings) {
+            objAuth.checkSession();
             this.loadMemoryProducts();
+            this.getSchools();
+            
             $("#btn-sale").on("click", function (e) {
                 e.preventDefault();
                 let nombre_retiro = $("#txt_nombre_retiro").val();

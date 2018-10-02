@@ -19,7 +19,8 @@ var objAuth = {
                     localStorage.setItem("currentUser", JSON.stringify({
                         email: email,
                         token: obj.token,
-                        user_data: obj.user_data
+                        user_data: obj.user_data,
+                        token_expire: 20
                     }));
 
                     objAuth.statusSession();
@@ -43,7 +44,22 @@ var objAuth = {
     },
 
     checkSession() {
-        return (localStorage.getItem("currentUser")) ? true : false;
+        var date = new Date();
+        var min_left = date.getMinutes();
+        var user_info = JSON.parse(localStorage.getItem("currentUser"));
+
+        if (!user_info) {
+            objAuth.closeSession();
+            return false;
+        }
+
+        min_left = user_info.token_expire - min_left;
+        if (min_left <= 0) {
+            objAuth.closeSession();
+            return false;
+        }
+
+        return true;
     },
 
     statusSession() {
