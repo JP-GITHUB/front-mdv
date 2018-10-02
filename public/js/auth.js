@@ -20,7 +20,7 @@ var objAuth = {
                         email: email,
                         token: obj.token,
                         user_data: obj.user_data,
-                        token_expire: 20
+                        // token_date: moment()
                     }));
 
                     objAuth.statusSession();
@@ -40,22 +40,14 @@ var objAuth = {
         $(".dropdown_session").css("display", "none");
         $("#dropdown_session #dropdownMenuButton").html("");
         $("#span_uareregistered, #loginBtn").css("display", "block");
-        window.location.href = "/";
     },
 
     checkSession() {
         var date = new Date();
         var min_left = date.getMinutes();
         var user_info = JSON.parse(localStorage.getItem("currentUser"));
-
         if (!user_info) {
-            objAuth.closeSession();
-            return false;
-        }
-
-        min_left = user_info.token_expire - min_left;
-        if (min_left <= 0) {
-            objAuth.closeSession();
+            //objAuth.closeSession();
             return false;
         }
 
@@ -98,7 +90,8 @@ $(document).ready(() => {
     });
 
     $("#btn_close_session").click(function (e) {
-        objAuth.closeSession();
+        objAuth.closeSession();        
+        window.location.href = "/";
     });
 
     objAuth.init();
