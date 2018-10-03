@@ -44,8 +44,12 @@ app.use('/productos', function(req, res) {
     res.render('productos');
 });
 
-app.use('/existencias', function(req, res) {
+app.use('/existencias', function (req, res) {
     res.render('existencias');
+});
+
+app.use('/colegios', function(req, res) {
+    res.render('colegios');
 });
 
 module.exports = app;
